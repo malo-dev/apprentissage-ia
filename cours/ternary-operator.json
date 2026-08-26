@@ -1,0 +1,77 @@
+{
+  "id": "ternary-operator",
+  "titre": "The Ternary Operator",
+  "description": "L'expression conditionnelle en une ligne (ternaire) qui remplace un if/else, voire une chaine de elif.",
+  "cours": {
+    "introduction": "L'operateur ternaire permet d'assigner une valeur si une condition est vraie, et une autre si elle est fausse, en une seule ligne.",
+    "sections": [
+      {
+        "titre": "Syntaxe de base",
+        "explication": "On assigne 'WEEKEND!' si le nombre est superieur a 5, sinon 'Workday'.",
+        "exemple": "num = 6\n\nx = \"WEEKEND!\" if num > 5 else \"Workday\"\n\nprint(x)"
+      },
+      {
+        "titre": "Ce n'est pas un vrai operateur",
+        "explication": "Note importante : l'operateur ternaire n'est pas un vrai operateur au sens strict, c'est une expression conditionnelle, ou une version raccourcie d'un if statement classique."
+      },
+      {
+        "titre": "A la place de elif",
+        "explication": "L'operateur ternaire peut etre utilise a la place de elif dans des if statements plus longs, en les enchainant.",
+        "exemple": "num = 6\n\nx = \"Fri\" if num == 5 else \"Sat\" if num == 6 else \"Sun\" if num == 7 else \"weekday\"\n\nprint(x)"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Cree une variable age = 20 et utilise l'operateur ternaire pour assigner 'majeur' si age >= 18, sinon 'mineur'. Affiche le resultat.",
+      "type": "code",
+      "reponse": "age = 20\nstatut = \"majeur\" if age >= 18 else \"mineur\"\nprint(statut)",
+      "resultat_attendu": "majeur"
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Reecris l'exercice precedent SANS operateur ternaire, avec un if/else classique sur plusieurs lignes, pour bien voir l'equivalence exacte.",
+      "type": "code",
+      "reponse": "age = 20\nif age >= 18:\n    statut = \"majeur\"\nelse:\n    statut = \"mineur\"\nprint(statut)",
+      "resultat_attendu": "majeur",
+      "explication": "L'operateur ternaire ne fait rien de nouveau, c'est juste une syntaxe plus courte pour le meme resultat. A utiliser uniquement quand ca reste lisible : pour une logique complexe, prefere le if/else classique."
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Utilise l'operateur ternaire directement DANS un print(), sans variable intermediaire, pour afficher 'pair' ou 'impair' selon que n = 7 est pair ou non.",
+      "type": "code",
+      "reponse": "n = 7\nprint(\"pair\" if n % 2 == 0 else \"impair\")",
+      "resultat_attendu": "impair"
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Reproduis l'exemple du cours mais avec les jours : num = 3 doit donner 'Lun' si num==1, 'Mar' si num==2, 'Mer' si num==3, sinon 'autre jour'. Enchaine plusieurs ternaires comme dans le cours.",
+      "type": "code",
+      "reponse": "num = 3\nx = \"Lun\" if num == 1 else \"Mar\" if num == 2 else \"Mer\" if num == 3 else \"autre jour\"\nprint(x)",
+      "resultat_attendu": "Mer"
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction categoriser_note(note) qui renvoie 'A' si note >= 90, 'B' si note >= 80, 'C' si note >= 70, sinon 'F', EN UNE SEULE LIGNE avec des ternaires enchaines (pas de if/elif classique). Teste avec 95, 85, 72, 50.",
+      "type": "code",
+      "reponse": "def categoriser_note(note):\n    return \"A\" if note >= 90 else \"B\" if note >= 80 else \"C\" if note >= 70 else \"F\"\n\nprint(categoriser_note(95))\nprint(categoriser_note(85))\nprint(categoriser_note(72))\nprint(categoriser_note(50))",
+      "resultat_attendu": "A\nB\nC\nF",
+      "explication": "L'ordre des conditions compte : Python teste dans l'ordre d'ecriture et s'arrete a la premiere condition vraie. Il faut donc toujours mettre les seuils du PLUS eleve au PLUS bas, sinon note=95 tomberait dans la premiere condition qui matche meme si elle n'est pas la plus precise."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : a partir de quel niveau de complexite un enchainement de ternaires devient-il moins lisible qu'un if/elif/else classique, selon toi ? Ecris les DEUX versions (ternaire enchaine ET if/elif) pour categoriser un age en 'bebe' (<2), 'enfant' (<12), 'ado' (<18), 'adulte' (<65), 'senior' (sinon), et compare visuellement.",
+      "type": "code",
+      "reponse": "age = 15\n\n# Version ternaire enchainee\ncategorie_ternaire = \"bebe\" if age < 2 else \"enfant\" if age < 12 else \"ado\" if age < 18 else \"adulte\" if age < 65 else \"senior\"\n\n# Version if/elif classique\nif age < 2:\n    categorie_ifelse = \"bebe\"\nelif age < 12:\n    categorie_ifelse = \"enfant\"\nelif age < 18:\n    categorie_ifelse = \"ado\"\nelif age < 65:\n    categorie_ifelse = \"adulte\"\nelse:\n    categorie_ifelse = \"senior\"\n\nprint(categorie_ternaire)\nprint(categorie_ifelse)\nprint(categorie_ternaire == categorie_ifelse)",
+      "resultat_attendu": "ado\nado\nTrue",
+      "explication": "Les deux versions donnent exactement le meme resultat. C'est un choix de lisibilite : au-dela de 2-3 conditions enchainees, if/elif/else devient generalement plus facile a lire et a maintenir qu'une longue chaine de ternaires sur une seule ligne."
+    }
+  ]
+}

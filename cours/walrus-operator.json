@@ -1,0 +1,62 @@
+{
+  "id": "walrus-operator",
+  "titre": "The Walrus Operator",
+  "description": "L'operateur := introduit en Python 3.8, qui permet d'assigner une valeur a une variable au sein meme d'une expression plus large.",
+  "cours": {
+    "introduction": "Python 3.8 a introduit l'operateur :=, connu sous le nom de 'walrus operator' (operateur morse, car := ressemble a des defenses de morse). Il assigne une valeur a une variable dans le cadre d'une expression plus large, en une seule etape.",
+    "sections": [
+      {
+        "titre": "Exemple de base",
+        "explication": "La variable count est assignee DIRECTEMENT dans la condition du if, et recoit la valeur 5 (la longueur de la liste).",
+        "exemple": "numbers = [1, 2, 3, 4, 5]\n\nif (count := len(numbers)) > 3:\n    print(f\"List has {count} elements\")"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Reecris ce code SANS walrus operator, en utilisant une variable classique assignee avant le if, pour bien voir l'equivalence : numbers = [1,2,3,4,5] ; if (count := len(numbers)) > 3: print(count).",
+      "type": "code",
+      "reponse": "numbers = [1, 2, 3, 4, 5]\ncount = len(numbers)\nif count > 3:\n    print(count)",
+      "resultat_attendu": "5",
+      "explication": "Le walrus operator ne fait rien de 'magique' : il fait juste en une ligne ce que deux lignes feraient normalement (assigner puis tester). Son interet est la concision quand la variable n'est utile que dans ce contexte precis."
+    },
+    {
+      "id": 2,
+      "niveau": "moyen",
+      "question": "Utilise le walrus operator dans une boucle while pour lire des 'faux inputs' d'une liste simulee jusqu'a tomber sur la valeur 0 (indice: pas d'input() reel ici, simule avec une liste et un index, ou utilise directement une expression qui varie).",
+      "type": "code",
+      "reponse": "import random\nrandom.seed(1)\n\nwhile (n := random.randint(0, 3)) != 0:\n    print(f\"Tire : {n}\")\nprint(\"Zero atteint, on arrete.\")",
+      "resultat_attendu": "affiche des nombres tires aleatoirement jusqu'a tomber sur 0, puis 'Zero atteint, on arrete.'",
+      "explication": "C'est l'usage le plus classique du walrus operator : dans une condition de boucle while, pour eviter de dupliquer l'appel a la fonction (une fois avant la boucle pour l'initialisation, une fois a la fin de chaque iteration)."
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Utilise le walrus operator dans une list comprehension pour ne garder QUE les carres des nombres de 1 a 10 qui sont superieurs a 20, en evitant de calculer le carre deux fois (une fois pour le test, une fois pour la valeur gardee).",
+      "type": "code",
+      "reponse": "nombres = range(1, 11)\ncarres_filtres = [carre for n in nombres if (carre := n ** 2) > 20]\nprint(carres_filtres)",
+      "resultat_attendu": "[25, 36, 49, 64, 81, 100]",
+      "explication": "Sans walrus, il faudrait ecrire [n**2 for n in nombres if n**2 > 20], ce qui calcule n**2 DEUX FOIS pour chaque element retenu. Avec :=, le calcul n'est fait qu'une fois et sa valeur est reutilisee."
+    },
+    {
+      "id": 4,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction qui simule la lecture de lignes d'un 'fichier' (une liste de strings, dont la derniere est une string vide pour simuler la fin de fichier), et utilise le walrus operator dans un while pour afficher chaque ligne jusqu'a la string vide.",
+      "type": "code",
+      "reponse": "lignes = iter([\"premiere ligne\", \"deuxieme ligne\", \"troisieme ligne\", \"\"])\n\nwhile (ligne := next(lignes)) != \"\":\n    print(ligne)\nprint(\"Fin de fichier atteinte\")",
+      "resultat_attendu": "premiere ligne\ndeuxieme ligne\ntroisieme ligne\nFin de fichier atteinte",
+      "explication": "Ce pattern reproduit exactement comment on lit un vrai fichier ligne par ligne avec while (ligne := fichier.readline()) : la boucle s'arrete des que readline() renvoie une string vide (fin du fichier)."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : essaie d'utiliser le walrus operator DIRECTEMENT comme instruction seule, sans parentheses ni contexte englobant : count := 5. Que se passe-t-il ? Pourquoi cette restriction existe-t-elle en Python ?",
+      "type": "code",
+      "reponse": "try:\n    exec(\"count := 5\")\nexcept SyntaxError as e:\n    print(\"Erreur de syntaxe :\", e)",
+      "resultat_attendu": "Erreur de syntaxe : invalid syntax",
+      "explication": "Le walrus operator ne peut PAS etre utilise comme une instruction independante (contrairement a =). Il doit toujours faire partie d'une expression plus large (dans un if, un while, une comprehension, entre parentheses...). C'est un choix delibere des createurs de Python pour eviter la confusion avec l'operateur d'assignation classique = et forcer un usage cible."
+    }
+  ]
+}

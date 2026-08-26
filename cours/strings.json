@@ -1,0 +1,108 @@
+{
+  "id": "strings",
+  "titre": "Python Strings",
+  "description": "Les chaines de caracteres en Python : quotes, multilignes, acces aux caracteres, boucles, longueur et recherche.",
+  "cours": {
+    "introduction": "Les strings en Python sont entourees de guillemets simples ou doubles. 'hello' est identique a \"hello\".",
+    "sections": [
+      {
+        "titre": "Afficher une string",
+        "exemple": "print(\"Hello\")\nprint('Hello')"
+      },
+      {
+        "titre": "Guillemets dans des guillemets",
+        "explication": "On peut utiliser des guillemets a l'interieur d'une string, tant qu'ils ne correspondent pas aux guillemets qui l'entourent.",
+        "exemple": "print(\"It's alright\")\nprint(\"He is called 'Johnny'\")\nprint('He is called \"Johnny\"')"
+      },
+      {
+        "titre": "Assigner une string a une variable",
+        "exemple": "a = \"Hello\"\nprint(a)"
+      },
+      {
+        "titre": "Strings multilignes",
+        "explication": "On peut assigner une string multiligne a une variable avec trois guillemets (doubles ou simples). Les retours a la ligne sont conserves exactement comme dans le code.",
+        "exemple": "a = \"\"\"Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit,\nsed do eiusmod tempor incididunt\nut labore et dolore magna aliqua.\"\"\"\nprint(a)"
+      },
+      {
+        "titre": "Les strings sont des tableaux (Arrays)",
+        "explication": "Comme beaucoup d'autres langages, les strings en Python sont des tableaux de caracteres unicode. Python n'a pas de type 'caractere' : un seul caractere est simplement une string de longueur 1. On utilise les crochets [] pour acceder aux elements.",
+        "exemple": "a = \"Hello, World!\"\nprint(a[1])  # le premier caractere est a la position 0"
+      },
+      {
+        "titre": "Boucler sur une string",
+        "explication": "Comme les strings sont des tableaux, on peut boucler sur leurs caracteres avec une boucle for.",
+        "exemple": "for x in \"banana\":\n  print(x)"
+      },
+      {
+        "titre": "Longueur d'une string",
+        "explication": "Pour obtenir la longueur d'une string, on utilise la fonction len().",
+        "exemple": "a = \"Hello, World!\"\nprint(len(a))"
+      },
+      {
+        "titre": "Verifier la presence (in)",
+        "explication": "Pour verifier si une phrase ou un caractere est present dans une string, on utilise le mot-cle 'in'.",
+        "exemple": "txt = \"The best things in life are free!\"\nprint(\"free\" in txt)\n\nif \"free\" in txt:\n  print(\"Yes, 'free' is present.\")"
+      },
+      {
+        "titre": "Verifier l'absence (not in)",
+        "explication": "Pour verifier qu'une phrase ou un caractere N'EST PAS present, on utilise 'not in'.",
+        "exemple": "txt = \"The best things in life are free!\"\nprint(\"expensive\" not in txt)\n\nif \"expensive\" not in txt:\n  print(\"No, 'expensive' is NOT present.\")"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Quel sera le resultat de : x = 'Welcome' ; print(x[3]) ?",
+      "type": "qcm",
+      "choix": ["Wel", "c", "Welcome Welcome Welcome"],
+      "reponse": "c",
+      "explication": "Les index commencent a 0. W(0) e(1) l(2) c(3) o(4) m(5) e(6). x[3] vaut donc 'c'."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Cree une variable phrase avec le texte de ton choix (au moins 10 caracteres) et affiche sa longueur avec len().",
+      "type": "code",
+      "reponse": "phrase = \"J'apprends Python\"\nprint(len(phrase))",
+      "resultat_attendu": "un nombre entier correspondant au nombre de caracteres, espaces compris"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Ecris une boucle for qui parcourt le mot 'Python' et n'affiche que les voyelles (a, e, i, o, u) rencontrees.",
+      "type": "code",
+      "reponse": "for lettre in \"Python\":\n    if lettre in \"aeiouAEIOU\":\n        print(lettre)",
+      "resultat_attendu": "o",
+      "explication": "On peut utiliser 'in' pour tester si une lettre appartient a une string de voyelles, exactement comme pour un mot complet."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Sans utiliser de boucle explicite ni de fonction toute faite, calcule le nombre de fois que la lettre 'a' apparait dans 'banana' en utilisant une comprehension ou une boucle simple avec un compteur.",
+      "type": "code",
+      "reponse": "mot = \"banana\"\ncompteur = 0\nfor lettre in mot:\n    if lettre == \"a\":\n        compteur += 1\nprint(compteur)",
+      "resultat_attendu": "3",
+      "explication": "Astuce plus rapide : mot.count('a') donne directement le meme resultat, mais coder la boucle aide a comprendre le mecanisme."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction est_palindrome(mot) qui renvoie True si le mot se lit pareil a l'endroit et a l'envers (ex: 'radar', 'kayak'), False sinon. Indice : une string peut etre inversee avec mot[::-1]. Teste avec 'radar' et 'python'.",
+      "type": "code",
+      "reponse": "def est_palindrome(mot):\n    return mot == mot[::-1]\n\nprint(est_palindrome(\"radar\"))\nprint(est_palindrome(\"python\"))",
+      "resultat_attendu": "True\nFalse",
+      "explication": "mot[::-1] est une technique de 'slicing' qui parcourt la string a l'envers (pas de -1). C'est la facon la plus courante d'inverser une string en Python."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : une variable txt contient une phrase. Verifie SANS utiliser 'in' directement sur le mot entier, mais en bouclant caractere par caractere, si le caractere '!' est present dans la phrase. Affiche 'trouve' ou 'pas trouve'.",
+      "type": "code",
+      "reponse": "txt = \"The best things in life are free!\"\ntrouve = False\nfor caractere in txt:\n    if caractere == \"!\":\n        trouve = True\n\nif trouve:\n    print(\"trouve\")\nelse:\n    print(\"pas trouve\")",
+      "resultat_attendu": "trouve",
+      "explication": "Cet exercice fait re-implementer manuellement ce que 'in' fait automatiquement, pour bien comprendre le mecanisme de recherche caractere par caractere."
+    }
+  ]
+}

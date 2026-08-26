@@ -1,0 +1,84 @@
+{
+  "id": "identity-operators",
+  "titre": "Python Identity Operators",
+  "description": "Les operateurs d'identite is / is not, qui comparent l'identite en memoire des objets, pas leur egalite de valeur.",
+  "cours": {
+    "introduction": "Les operateurs d'identite sont utilises pour comparer des objets, non pas pour savoir s'ils sont egaux, mais s'ils sont VRAIMENT le meme objet, avec le meme emplacement en memoire.",
+    "table_operateurs": [
+      { "operateur": "is", "description": "Renvoie True si les deux variables sont le meme objet", "exemple": "x is y" },
+      { "operateur": "is not", "description": "Renvoie True si les deux variables ne sont PAS le meme objet", "exemple": "x is not y" }
+    ],
+    "sections": [
+      {
+        "titre": "L'operateur is",
+        "explication": "is renvoie True si les deux variables pointent vers le meme objet en memoire.",
+        "exemple": "x = [\"apple\", \"banana\"]\ny = [\"apple\", \"banana\"]\nz = x\n\nprint(x is z)   # True, z est le MEME objet que x\nprint(x is y)   # False, y est un objet DIFFERENT (meme contenu)\nprint(x == y)   # True, les VALEURS sont egales"
+      },
+      {
+        "titre": "L'operateur is not",
+        "explication": "is not renvoie True si les deux variables ne pointent PAS vers le meme objet.",
+        "exemple": "x = [\"apple\", \"banana\"]\ny = [\"apple\", \"banana\"]\n\nprint(x is not y)"
+      },
+      {
+        "titre": "Difference entre is et ==",
+        "explication": "is verifie si les deux variables pointent vers le MEME objet en memoire. == verifie si les VALEURS des deux variables sont egales.",
+        "exemple": "x = [1, 2, 3]\ny = [1, 2, 3]\n\nprint(x == y)  # True : memes valeurs\nprint(x is y)  # False : deux objets differents en memoire"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Que verifie l'operateur is ?",
+      "type": "qcm",
+      "choix": ["Si deux valeurs sont egales", "Si deux variables pointent vers le meme objet", "Si une valeur existe"],
+      "reponse": "Si deux variables pointent vers le meme objet",
+      "explication": "is compare l'IDENTITE (l'emplacement memoire), pas la valeur. C'est == qui compare les valeurs."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Cree a = {'nom': 'Malo'} et b = a (pas une copie, la meme reference). Verifie avec is que a et b sont bien le meme objet.",
+      "type": "code",
+      "reponse": "a = {\"nom\": \"Malo\"}\nb = a\nprint(a is b)",
+      "resultat_attendu": "True"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Utilise la fonction id() pour afficher l'adresse memoire de a = [1,2,3] et de b = [1,2,3] (deux listes independantes avec le meme contenu). Confirme que ces id() sont differents, en accord avec x is y qui renvoie False.",
+      "type": "code",
+      "reponse": "a = [1, 2, 3]\nb = [1, 2, 3]\nprint(id(a))\nprint(id(b))\nprint(a is b)",
+      "resultat_attendu": "(deux nombres differents)\n(deux nombres differents)\nFalse",
+      "explication": "id() renvoie l'identifiant unique (en pratique l'adresse memoire en CPython) d'un objet. C'est exactement ce que 'is' compare en interne : x is y equivaut a id(x) == id(y)."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Piege classique : cree x = 256 et y = 256, puis teste x is y. Fais de meme avec x = 300 et y = 300. Le resultat est-il le meme dans les deux cas ? Pourquoi (indice : Python met en cache les petits entiers) ?",
+      "type": "code",
+      "reponse": "x = 256\ny = 256\nprint(x is y)   # souvent True\n\na = 300\nb = 300\nprint(a is b)   # souvent False (depend de l'implementation/contexte)",
+      "resultat_attendu": "True\nFalse (comportement variable selon le contexte d'execution)",
+      "explication": "CPython met en cache automatiquement les petits entiers entre -5 et 256 (optimisation interne) : ils partagent tous le meme objet en memoire. Au-dela, chaque nombre cree un nouvel objet. C'est UNE RAISON DE PLUS de ne JAMAIS utiliser is pour comparer des nombres ou des valeurs : ce comportement est un detail d'implementation, pas une garantie du langage."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : pourquoi utilise-t-on toujours 'is None' plutot que '== None' pour verifier si une variable vaut None en Python ? Demontre avec une classe personnalisee qui redefinit __eq__ de facon trompeuse.",
+      "type": "code",
+      "reponse": "class Trompeur:\n    def __eq__(self, autre):\n        return True  # egal a TOUT, meme None !\n\nx = Trompeur()\nprint(x == None)   # True ! piege\nprint(x is None)    # False, correct",
+      "resultat_attendu": "True\nFalse",
+      "explication": "== peut etre redefini par n'importe quelle classe via __eq__, et son comportement peut donc etre trompeur ou impredictible. is compare l'identite reelle en memoire et ne peut PAS etre redefini de cette maniere. Comme il n'existe qu'un SEUL objet None dans tout un programme Python, 'is None' est toujours fiable a 100%, contrairement a '== None'."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction sont_memes_objets(liste_a, liste_b) qui, pour deux listes de meme longueur contenant des objets (pas forcement des nombres), verifie ELEMENT PAR ELEMENT avec 'is' si chaque paire pointe vers le meme objet. Teste avec des sous-listes partagees et non partagees.",
+      "type": "code",
+      "reponse": "def sont_memes_objets(liste_a, liste_b):\n    return [a is b for a, b in zip(liste_a, liste_b)]\n\npartagee = [1, 2]\nliste_a = [partagee, [3, 4]]\nliste_b = [partagee, [3, 4]]\n\nprint(sont_memes_objets(liste_a, liste_b))",
+      "resultat_attendu": "[True, False]",
+      "explication": "Le premier element est le MEME objet 'partagee' dans les deux listes -> True. Le second element est une liste [3,4] recreee independamment dans chaque liste -> memes valeurs mais objets differents -> False. zip() permet de parcourir deux listes en parallele, element par element."
+    }
+  ]
+}

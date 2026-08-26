@@ -1,0 +1,89 @@
+{
+  "id": "modify-strings",
+  "titre": "Python - Modify Strings",
+  "description": "Methodes integrees pour transformer des strings : upper(), lower(), strip(), replace(), split().",
+  "cours": {
+    "introduction": "Python possede un ensemble de methodes integrees que l'on peut utiliser sur les strings.",
+    "sections": [
+      {
+        "titre": "Majuscules (upper case)",
+        "explication": "La methode upper() renvoie la string en majuscules.",
+        "exemple": "a = \"Hello, World!\"\nprint(a.upper())"
+      },
+      {
+        "titre": "Minuscules (lower case)",
+        "explication": "La methode lower() renvoie la string en minuscules.",
+        "exemple": "a = \"Hello, World!\"\nprint(a.lower())"
+      },
+      {
+        "titre": "Supprimer les espaces (strip)",
+        "explication": "Le whitespace est l'espace avant et/ou apres le texte reel. La methode strip() supprime tout whitespace au debut et a la fin.",
+        "exemple": "a = \" Hello, World! \"\nprint(a.strip()) # renvoie \"Hello, World!\""
+      },
+      {
+        "titre": "Remplacer une string (replace)",
+        "explication": "La methode replace() remplace une partie de la string par une autre.",
+        "exemple": "a = \"Hello, World!\"\nprint(a.replace(\"H\", \"J\"))"
+      },
+      {
+        "titre": "Diviser une string (split)",
+        "explication": "La methode split() renvoie une liste, ou le texte entre le separateur specifie devient un element de la liste.",
+        "exemple": "a = \"Hello, World!\"\nprint(a.split(\",\")) # renvoie ['Hello', ' World!']"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Quelle est la syntaxe correcte pour afficher une string en majuscules ?",
+      "type": "qcm",
+      "choix": ["'Welcome'.upper()", "'Welcome'.toUpper()", "'Welcome'.toUpperCase()"],
+      "reponse": "'Welcome'.upper()",
+      "explication": "'toUpper()' et 'toUpperCase()' n'existent pas en Python (ce sont des methodes JavaScript/Java). En Python c'est toujours upper()."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Cree une variable a = '  Python is Fun  ' puis affiche-la nettoyee des espaces au debut/fin ET entierement en minuscules, en une seule ligne en chainant les methodes.",
+      "type": "code",
+      "reponse": "a = \"  Python is Fun  \"\nprint(a.strip().lower())",
+      "resultat_attendu": "python is fun",
+      "explication": "On peut chainer plusieurs methodes de string a la suite : a.strip().lower() applique d'abord strip(), puis lower() sur le resultat."
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Avec a = 'Hello, World!', remplace la virgule par un point d'exclamation supplementaire pour obtenir 'Hello! World!'.",
+      "type": "code",
+      "reponse": "a = \"Hello, World!\"\nprint(a.replace(\",\", \"!\"))",
+      "resultat_attendu": "Hello! World!"
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Une variable txt = 'pomme,banane,kiwi,fraise' contient une liste de fruits separes par des virgules. Utilise split() pour la transformer en vraie liste Python, puis affiche combien de fruits elle contient avec len().",
+      "type": "code",
+      "reponse": "txt = \"pomme,banane,kiwi,fraise\"\nfruits = txt.split(\",\")\nprint(fruits)\nprint(len(fruits))",
+      "resultat_attendu": "['pomme', 'banane', 'kiwi', 'fraise']\n4"
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : sans utiliser de boucle for, prends la phrase txt = 'le chat mange la souris' et compte combien de mots elle contient en te servant de split() (qui separe par defaut sur les espaces si on ne precise pas de separateur).",
+      "type": "code",
+      "reponse": "txt = \"le chat mange la souris\"\nmots = txt.split()\nprint(len(mots))",
+      "resultat_attendu": "5",
+      "explication": "split() sans argument separe automatiquement sur n'importe quelle sequence d'espaces, ce qui est tres pratique pour compter des mots."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction nettoyer_titre(titre) qui prend une string, enleve les espaces au debut/fin, remplace tous les underscores '_' par des espaces, et met en majuscule uniquement la premiere lettre de chaque mot (indice: cherche la methode title()). Teste avec '  mon_super_titre_de_cours  '.",
+      "type": "code",
+      "reponse": "def nettoyer_titre(titre):\n    titre = titre.strip()\n    titre = titre.replace(\"_\", \" \")\n    return titre.title()\n\nprint(nettoyer_titre(\"  mon_super_titre_de_cours  \"))",
+      "resultat_attendu": "Mon Super Titre De Cours",
+      "explication": "title() n'est pas dans le cours ci-dessus mais fait partie des methodes de string standard : elle met une majuscule au debut de chaque mot. C'est l'occasion d'apprendre a chercher une methode non vue dans la reference Python."
+    }
+  ]
+}

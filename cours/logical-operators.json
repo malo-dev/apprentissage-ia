@@ -1,0 +1,84 @@
+{
+  "id": "logical-operators",
+  "titre": "Python Logical Operators",
+  "description": "Les operateurs logiques and, or, not pour combiner des expressions conditionnelles.",
+  "cours": {
+    "introduction": "Les operateurs logiques sont utilises pour combiner des expressions conditionnelles.",
+    "table_operateurs": [
+      { "operateur": "and", "description": "Renvoie True si les deux expressions sont vraies", "exemple": "x < 5 and x < 10" },
+      { "operateur": "or", "description": "Renvoie True si au moins une des expressions est vraie", "exemple": "x < 5 or x < 4" },
+      { "operateur": "not", "description": "Inverse le resultat, renvoie False si le resultat est vrai", "exemple": "not(x < 5 and x < 10)" }
+    ],
+    "sections": [
+      {
+        "titre": "and",
+        "explication": "Teste si un nombre est superieur a 0 ET inferieur a 10.",
+        "exemple": "x = 5\n\nprint(x > 0 and x < 10)"
+      },
+      {
+        "titre": "or",
+        "explication": "Teste si un nombre est inferieur a 5 OU superieur a 10.",
+        "exemple": "x = 5\n\nprint(x < 5 or x > 10)"
+      },
+      {
+        "titre": "not",
+        "explication": "Inverse le resultat d'une expression avec not.",
+        "exemple": "x = 5\n\nprint(not(x > 3 and x < 10))"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Quel est le resultat de 5 < 7 and 5 > 7 ?",
+      "type": "qcm",
+      "choix": ["True", "False", "None"],
+      "reponse": "False",
+      "explication": "5 < 7 est True mais 5 > 7 est False. Avec 'and', les DEUX conditions doivent etre vraies pour que le resultat soit True. Ici une seule est vraie, donc le resultat est False."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Cree x = 12 et teste avec 'and' si x est superieur a 10 ET inferieur a 20.",
+      "type": "code",
+      "reponse": "x = 12\nprint(x > 10 and x < 20)",
+      "resultat_attendu": "True"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Cree age = 16 et permis = False. Ecris une condition avec 'and' qui verifie si la personne peut conduire (age >= 18 ET permis == True). Utilise 'not' pour verifier separement si elle N'A PAS le droit.",
+      "type": "code",
+      "reponse": "age = 16\npermis = False\n\npeut_conduire = age >= 18 and permis\nprint(peut_conduire)\nprint(not peut_conduire)",
+      "resultat_attendu": "False\nTrue"
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Verifie les lois de De Morgan par toi-meme : compare not(x > 3 and x < 10) avec (not(x > 3)) or (not(x < 10)) pour x = 5. Les deux resultats doivent etre identiques.",
+      "type": "code",
+      "reponse": "x = 5\nprint(not(x > 3 and x < 10))\nprint((not(x > 3)) or (not(x < 10)))",
+      "resultat_attendu": "False\nFalse",
+      "explication": "Loi de De Morgan : not(A and B) est toujours equivalent a (not A) or (not B). Inverser un 'and' revient a transformer les deux conditions en 'or' de leurs inverses. Tres utile pour simplifier des conditions complexes."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : Python evalue 'and'/'or' en court-circuit (short-circuit evaluation) : si le premier operand suffit a determiner le resultat, le second n'est JAMAIS evalue. Prouve-le en definissant une fonction qui affiche un message quand elle est appelee, et montre qu'elle n'est pas appelee dans False and fonction().",
+      "type": "code",
+      "reponse": "def fonction_bruyante():\n    print(\"Je suis appelee !\")\n    return True\n\nresultat = False and fonction_bruyante()\nprint(\"resultat :\", resultat)\nprint(\"---\")\nresultat2 = True or fonction_bruyante()\nprint(\"resultat2 :\", resultat2)",
+      "resultat_attendu": "resultat : False\n---\nresultat2 : True",
+      "explication": "Aucun 'Je suis appelee !' ne s'affiche : dans False and X, Python sait deja que le resultat sera False sans avoir besoin d'evaluer X, donc X n'est jamais execute. Meme logique pour True or X. C'est le court-circuit, un mecanisme d'optimisation important a connaitre (utile par exemple pour eviter des appels couteux ou des erreurs : if x != 0 and 10/x > 1)."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction valider_mot_de_passe(mdp) qui renvoie True seulement si le mot de passe fait AU MOINS 8 caracteres ET contient au moins un chiffre ET n'est PAS egal a 'password'. Combine and, not et une methode de string. Teste avec 'abc123def', 'password', 'short1'.",
+      "type": "code",
+      "reponse": "def valider_mot_de_passe(mdp):\n    contient_chiffre = any(caractere.isdigit() for caractere in mdp)\n    return len(mdp) >= 8 and contient_chiffre and not (mdp == \"password\")\n\nprint(valider_mot_de_passe(\"abc123def\"))\nprint(valider_mot_de_passe(\"password\"))\nprint(valider_mot_de_passe(\"short1\"))",
+      "resultat_attendu": "True\nFalse\nFalse",
+      "explication": "'short1' echoue car il fait moins de 8 caracteres. 'password' echoue a cause du not(mdp == 'password'), meme s'il faisait 8+ caracteres. any() combine avec une expression generatrice est une facon idiomatique de verifier 'au moins un caractere qui repond a une condition'."
+    }
+  ]
+}

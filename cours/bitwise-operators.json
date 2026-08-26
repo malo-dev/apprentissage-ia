@@ -1,0 +1,89 @@
+{
+  "id": "bitwise-operators",
+  "titre": "Python Bitwise Operators",
+  "description": "Les operateurs bit a bit : &, |, ^, ~, <<, >> pour comparer et manipuler des nombres au niveau binaire.",
+  "cours": {
+    "introduction": "Les operateurs bitwise sont utilises pour comparer des nombres au niveau binaire.",
+    "table_operateurs": [
+      { "operateur": "&", "nom": "AND", "description": "Met chaque bit a 1 si les deux bits sont a 1", "exemple": "x & y" },
+      { "operateur": "|", "nom": "OR", "description": "Met chaque bit a 1 si l'un des deux bits est a 1", "exemple": "x | y" },
+      { "operateur": "^", "nom": "XOR", "description": "Met chaque bit a 1 si UN SEUL des deux bits est a 1", "exemple": "x ^ y" },
+      { "operateur": "~", "nom": "NOT", "description": "Inverse tous les bits", "exemple": "~x" },
+      { "operateur": "<<", "nom": "Zero fill left shift", "description": "Decale vers la gauche en inserant des zeros a droite, les bits de gauche disparaissent", "exemple": "x << 2" },
+      { "operateur": ">>", "nom": "Signed right shift", "description": "Decale vers la droite en repetant le bit de gauche, les bits de droite disparaissent", "exemple": "x >> 2" }
+    ],
+    "sections": [
+      {
+        "titre": "L'operateur & (AND)",
+        "explication": "6 en binaire est 0110. 3 en binaire est 0011. & compare chaque bit et le met a 1 seulement si les DEUX sont a 1, sinon 0. Resultat : 0010, soit 2 en decimal.",
+        "exemple": "print(6 & 3)  # 2"
+      },
+      {
+        "titre": "L'operateur | (OR)",
+        "explication": "| compare chaque bit et le met a 1 si AU MOINS UN des deux est a 1. 0110 | 0011 = 0111, soit 7 en decimal.",
+        "exemple": "print(6 | 3)  # 7"
+      },
+      {
+        "titre": "L'operateur ^ (XOR)",
+        "explication": "^ compare chaque bit et le met a 1 seulement si UN SEUL des deux est a 1 (pas les deux, pas aucun). 0110 ^ 0011 = 0101, soit 5 en decimal.",
+        "exemple": "print(6 ^ 3)  # 5"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Quel est le resultat de 0110 & 0011 (en binaire) ?",
+      "type": "qcm",
+      "choix": ["0010", "0011", "1001"],
+      "reponse": "0010",
+      "explication": "& met chaque bit a 1 seulement si les DEUX operandes ont ce bit a 1. Position par position : 0&0=0, 1&0=0, 1&1=1, 0&1=0, ce qui donne 0010."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Verifie avec Python les trois exemples du cours : 6 & 3, 6 | 3, 6 ^ 3. Utilise bin() pour afficher aussi 6 et 3 en binaire.",
+      "type": "code",
+      "reponse": "print(bin(6))\nprint(bin(3))\nprint(6 & 3)\nprint(6 | 3)\nprint(6 ^ 3)",
+      "resultat_attendu": "0b110\n0b11\n2\n7\n5",
+      "explication": "bin() affiche la representation binaire d'un entier, prefixee par '0b'. C'est utile pour verifier visuellement les operations bitwise."
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Utilise << pour multiplier 5 par 4 sans utiliser * (indice: decaler de n bits vers la gauche multiplie par 2^n). Verifie le resultat.",
+      "type": "code",
+      "reponse": "x = 5\nprint(x << 2)   # equivaut a x * (2**2) = x * 4\nprint(x * 4)    # verification",
+      "resultat_attendu": "20\n20",
+      "explication": "Decaler de n bits vers la gauche (<< n) equivaut a multiplier par 2^n. x << 2 multiplie par 4. C'est une astuce d'optimisation bas niveau, rarement necessaire en Python moderne mais bonne a connaitre."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Utilise >> pour diviser 20 par 4 (division entiere) sans utiliser // ni /.",
+      "type": "code",
+      "reponse": "x = 20\nprint(x >> 2)   # equivaut a x // (2**2) = x // 4",
+      "resultat_attendu": "5",
+      "explication": "Decaler de n bits vers la droite (>> n) equivaut a une division entiere par 2^n."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : que renvoie ~x pour x = 5 ? Devine puis verifie, et explique pourquoi le resultat n'est pas simplement 'les bits inverses de 5' en valeur absolue (indice : Python utilise le complement a deux pour les entiers negatifs).",
+      "type": "code",
+      "reponse": "x = 5\nprint(~x)",
+      "resultat_attendu": "-6",
+      "explication": "~x est mathematiquement equivalent a -(x+1). Pour x=5, ~5 = -(5+1) = -6. Ce comportement vient de la representation en complement a deux utilisee pour stocker les entiers negatifs en binaire : inverser tous les bits de 5 (0101 -> 1010 en 4 bits) ne donne pas directement un nombre 'lisible', mais correspond exactement a -6 dans cette representation."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction est_puissance_de_deux(n) qui utilise UNIQUEMENT l'operateur & (pas de boucle, pas de modulo) pour determiner si n est une puissance de 2 (1, 2, 4, 8, 16...). Indice : pour une puissance de 2, n & (n-1) vaut toujours 0. Teste avec 16, 18, 1, 0.",
+      "type": "code",
+      "reponse": "def est_puissance_de_deux(n):\n    return n > 0 and (n & (n - 1)) == 0\n\nprint(est_puissance_de_deux(16))\nprint(est_puissance_de_deux(18))\nprint(est_puissance_de_deux(1))\nprint(est_puissance_de_deux(0))",
+      "resultat_attendu": "True\nFalse\nTrue\nFalse",
+      "explication": "Une puissance de 2 en binaire n'a QU'UN SEUL bit a 1 (ex: 16 = 10000). n-1 inverse tous les bits a droite de ce bit unique (15 = 01111). Le AND entre les deux donne alors toujours 0. C'est une astuce bitwise classique utilisee en optimisation bas niveau. Le cas n=0 est exclu explicitement car 0 n'est pas une puissance de 2 valide, meme si 0 & -1 vaudrait 0 mathematiquement."
+    }
+  ]
+}

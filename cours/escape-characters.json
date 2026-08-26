@@ -1,0 +1,89 @@
+{
+  "id": "escape-characters",
+  "titre": "Python - Escape Characters",
+  "description": "Inserer des caracteres normalement illegaux dans une string a l'aide du backslash (caracteres d'echappement).",
+  "cours": {
+    "introduction": "Pour inserer des caracteres illegaux dans une string, on utilise un caractere d'echappement (escape character) : un backslash \\ suivi du caractere a inserer.",
+    "sections": [
+      {
+        "titre": "Le probleme",
+        "explication": "Un exemple de caractere illegal est un guillemet double a l'interieur d'une string elle-meme entouree de guillemets doubles. Ceci provoque une erreur.",
+        "exemple": "txt = \"We are the so-called \"Vikings\" from the north.\"\n# Erreur ! Python ne sait pas ou la string se termine."
+      },
+      {
+        "titre": "La solution : \\\"",
+        "explication": "Le caractere d'echappement permet d'utiliser des guillemets doubles alors que ce ne serait normalement pas autorise.",
+        "exemple": "txt = \"We are the so-called \\\"Vikings\\\" from the north.\"\nprint(txt)"
+      },
+      {
+        "titre": "Autres caracteres d'echappement",
+        "explication": "Liste des principaux escape characters utilises en Python.",
+        "table": [
+          { "code": "\\'", "resultat": "Guillemet simple (apostrophe)" },
+          { "code": "\\\\", "resultat": "Backslash" },
+          { "code": "\\n", "resultat": "Nouvelle ligne (New Line)" },
+          { "code": "\\r", "resultat": "Retour chariot (Carriage Return)" },
+          { "code": "\\t", "resultat": "Tabulation (Tab)" },
+          { "code": "\\b", "resultat": "Retour arriere (Backspace)" },
+          { "code": "\\f", "resultat": "Saut de page (Form Feed)" },
+          { "code": "\\ooo", "resultat": "Valeur octale" },
+          { "code": "\\xhh", "resultat": "Valeur hexadecimale" }
+        ]
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Ecris une string qui affiche exactement : Il m'a dit \"Salut !\" (avec les guillemets doubles inclus dans le texte, la string entiere entouree de guillemets doubles).",
+      "type": "code",
+      "reponse": "txt = \"Il m'a dit \\\"Salut !\\\"\"\nprint(txt)",
+      "resultat_attendu": "Il m'a dit \"Salut !\""
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Affiche deux mots sur deux lignes separees ('Bonjour' puis 'Monde') en utilisant UNE SEULE string avec \\n, pas deux print().",
+      "type": "code",
+      "reponse": "txt = \"Bonjour\\nMonde\"\nprint(txt)",
+      "resultat_attendu": "Bonjour\nMonde"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Affiche un tableau simple aligne avec des tabulations : 'Nom\\tAge' puis sur une deuxieme ligne 'Malo\\t25', en une seule string avec \\n et \\t combines.",
+      "type": "code",
+      "reponse": "txt = \"Nom\\tAge\\nMalo\\t25\"\nprint(txt)",
+      "resultat_attendu": "Nom    Age\nMalo   25",
+      "explication": "\\t insere une tabulation qui aide a aligner du texte en colonnes, utile pour un affichage simple type tableau dans le terminal."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Affiche un chemin de fichier Windows tel quel : C:\\Users\\Malo\\Documents (le backslash doit s'afficher litteralement, pas etre interprete comme un escape).",
+      "type": "code",
+      "reponse": "chemin = \"C:\\\\Users\\\\Malo\\\\Documents\"\nprint(chemin)",
+      "resultat_attendu": "C:\\Users\\Malo\\Documents",
+      "explication": "Pour afficher un vrai backslash, il faut le doubler \\\\ (echapper le backslash lui-meme). Alternative plus simple : utiliser un raw string avec r\"C:\\Users\\Malo\\Documents\"."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : compare l'affichage de \"C:\\\\test\" (double backslash) et de r\"C:\\test\" (raw string avec prefixe r). Montre que les deux donnent le meme resultat final. Explique a quoi sert un raw string.",
+      "type": "code",
+      "reponse": "a = \"C:\\\\test\"\nb = r\"C:\\test\"\nprint(a)\nprint(b)\nprint(a == b)",
+      "resultat_attendu": "C:\\test\nC:\\test\nTrue",
+      "explication": "Un raw string (prefixe r devant les guillemets) desactive TOUS les escape characters : \\ reste un simple backslash. Tres utilise pour les chemins Windows et les expressions regulieres (regex), pour eviter de doubler chaque backslash."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction afficher_recu(article, prix) qui affiche un recu formate sur plusieurs lignes avec \\n et \\t, du type :\\nArticle:\\tCafe\\nPrix:\\t3.50 EUR\\n---. Teste avec 'Cafe' et 3.5.",
+      "type": "code",
+      "reponse": "def afficher_recu(article, prix):\n    print(f\"Article:\\t{article}\\nPrix:\\t{prix:.2f} EUR\\n---\")\n\nafficher_recu(\"Cafe\", 3.5)",
+      "resultat_attendu": "Article:\tCafe\nPrix:\t3.50 EUR\n---",
+      "explication": "Cet exercice combine les escape characters (\\t, \\n) avec les f-strings et le formatage de nombres vus dans les cours precedents."
+    }
+  ]
+}

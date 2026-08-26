@@ -1,0 +1,106 @@
+{
+  "id": "booleans",
+  "titre": "Python Booleans",
+  "description": "Le type bool : True/False, evaluation d'expressions, valeurs truthy/falsy, et fonctions qui renvoient un booleen.",
+  "cours": {
+    "introduction": "Les booleens representent une valeur parmi deux : True ou False. En programmation, on a souvent besoin de savoir si une expression est True ou False.",
+    "sections": [
+      {
+        "titre": "Valeurs booleennes",
+        "explication": "Quand on compare deux valeurs, l'expression est evaluee et Python renvoie la reponse booleenne.",
+        "exemple": "print(10 > 9)\nprint(10 == 9)\nprint(10 < 9)"
+      },
+      {
+        "titre": "Booleens dans un if",
+        "explication": "Quand on execute une condition dans un if, Python renvoie True ou False.",
+        "exemple": "a = 200\nb = 33\n\nif b > a:\n  print(\"b is greater than a\")\nelse:\n  print(\"b is not greater than a\")"
+      },
+      {
+        "titre": "Evaluer des valeurs et variables avec bool()",
+        "explication": "La fonction bool() permet d'evaluer n'importe quelle valeur et de renvoyer True ou False en retour.",
+        "exemple": "print(bool(\"Hello\"))\nprint(bool(15))\n\nx = \"Hello\"\ny = 15\nprint(bool(x))\nprint(bool(y))"
+      },
+      {
+        "titre": "La plupart des valeurs sont True",
+        "explication": "Presque toute valeur est evaluee a True si elle contient quelque chose. Toute string est True sauf les strings vides. Tout nombre est True sauf 0. Toute liste, tuple, set, dictionnaire est True sauf s'ils sont vides.",
+        "exemple": "bool(\"abc\")\nbool(123)\nbool([\"apple\", \"cherry\", \"banana\"])"
+      },
+      {
+        "titre": "Certaines valeurs sont False",
+        "explication": "Il n'y a pas beaucoup de valeurs qui s'evaluent a False : les valeurs vides (), [], {}, \"\", le nombre 0, et la valeur None. Et bien sur, False lui-meme.",
+        "exemple": "bool(False)\nbool(None)\nbool(0)\nbool(\"\")\nbool(())\nbool([])\nbool({})"
+      },
+      {
+        "titre": "Objet personnalise evalue a False",
+        "explication": "Un objet cree a partir d'une classe avec une methode __len__ qui renvoie 0 ou False s'evalue lui aussi a False.",
+        "exemple": "class myclass():\n  def __len__(self):\n    return 0\n\nmyobj = myclass()\nprint(bool(myobj))"
+      },
+      {
+        "titre": "Les fonctions peuvent renvoyer un booleen",
+        "explication": "On peut creer des fonctions qui renvoient une valeur booleenne, et executer du code selon cette reponse.",
+        "exemple": "def myFunction():\n  return True\n\nif myFunction():\n  print(\"YES!\")\nelse:\n  print(\"NO!\")"
+      },
+      {
+        "titre": "isinstance()",
+        "explication": "Python possede beaucoup de fonctions integrees qui renvoient un booleen, comme isinstance(), utilisee pour determiner si un objet est d'un certain type de donnee.",
+        "exemple": "x = 200\nprint(isinstance(x, int))"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Quel sera le resultat de : print(5 > 3) ?",
+      "type": "qcm",
+      "choix": ["True", "False", "5 > 3"],
+      "reponse": "True",
+      "explication": "5 est bien superieur a 3, donc la comparaison s'evalue a True."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Sans utiliser bool() explicitement, devine si ces valeurs sont truthy (vraies) ou falsy (fausses), puis verifie avec print(bool(...)) : '', 'a', 0, -1, [], [0].",
+      "type": "code",
+      "reponse": "print(bool(\"\"))    # False\nprint(bool(\"a\"))   # True\nprint(bool(0))     # False\nprint(bool(-1))    # True\nprint(bool([]))    # False\nprint(bool([0]))   # True",
+      "resultat_attendu": "False\nTrue\nFalse\nTrue\nFalse\nTrue",
+      "explication": "Piege classique : [0] est True car c'est une liste NON VIDE (elle contient un element), meme si cet element est 0. C'est le CONTENANT qui compte, pas le contenu."
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Utilise isinstance() pour verifier si x = 3.14 est un float, ET separement si c'est un int. Explique la difference de resultat.",
+      "type": "code",
+      "reponse": "x = 3.14\nprint(isinstance(x, float))\nprint(isinstance(x, int))",
+      "resultat_attendu": "True\nFalse",
+      "explication": "isinstance() verifie le type EXACT (ou une sous-classe). 3.14 est un float, pas un int, meme si les deux sont des types numeriques."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Ecris une fonction est_pair(n) qui renvoie True si n est pair, False sinon (sans utiliser if/else, juste une expression booleenne directe avec return).",
+      "type": "code",
+      "reponse": "def est_pair(n):\n    return n % 2 == 0\n\nprint(est_pair(4))\nprint(est_pair(7))",
+      "resultat_attendu": "True\nFalse",
+      "explication": "n % 2 == 0 est deja une expression booleenne : pas besoin d'un if qui renverrait True ou False, on peut renvoyer directement le resultat de la comparaison."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : cree une classe Panier avec une methode __len__ qui renvoie le nombre d'articles stockes dans une liste interne. Cree un panier vide et un panier avec 2 articles, puis utilise directement 'if panier:' (sans appeler bool() explicitement) pour verifier s'il est vide ou non.",
+      "type": "code",
+      "reponse": "class Panier:\n    def __init__(self):\n        self.articles = []\n\n    def __len__(self):\n        return len(self.articles)\n\npanier_vide = Panier()\npanier_plein = Panier()\npanier_plein.articles = [\"pomme\", \"pain\"]\n\nif panier_vide:\n    print(\"Le panier vide a du contenu\")\nelse:\n    print(\"Le panier est vide\")\n\nif panier_plein:\n    print(\"Le panier a du contenu\")\nelse:\n    print(\"Le panier est vide\")",
+      "resultat_attendu": "Le panier est vide\nLe panier a du contenu",
+      "explication": "Quand on fait 'if objet:', Python appelle automatiquement bool(objet), qui lui-meme appelle __len__ si elle existe. C'est le meme mecanisme que pour les listes ou dictionnaires vides."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : que renvoie 'and' et 'or' en Python quand on les utilise entre deux valeurs qui ne sont PAS des booleens (par exemple 'a' and 'b', ou 0 or 'texte') ? Devine avant d'executer : est-ce que ca renvoie forcement True/False ?",
+      "type": "code",
+      "reponse": "print(\"a\" and \"b\")   # 'b'\nprint(0 or \"texte\")  # 'texte'\nprint(\"\" or \"defaut\")  # 'defaut'\nprint(5 and 0)       # 0",
+      "resultat_attendu": "b\ntexte\ndefaut\n0",
+      "explication": "Contrairement a d'autres langages, 'and'/'or' en Python NE renvoient PAS forcement True/False : ils renvoient l'une des deux valeurs elles-memes. 'and' renvoie le premier operand falsy, ou le dernier si tous sont truthy. 'or' renvoie le premier operand truthy, ou le dernier si tous sont falsy. C'est souvent utilise comme raccourci pour des valeurs par defaut : valeur or 'defaut'."
+    }
+  ]
+}

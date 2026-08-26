@@ -1,0 +1,88 @@
+{
+  "id": "format-strings",
+  "titre": "Python - Format Strings",
+  "description": "Combiner strings et nombres avec les f-strings : placeholders, modifiers et operations dans les accolades.",
+  "cours": {
+    "introduction": "On ne peut pas combiner directement des strings et des nombres avec +. Mais on peut le faire avec les f-strings ou la methode format().",
+    "sections": [
+      {
+        "titre": "Le probleme",
+        "explication": "Combiner une string et un nombre avec + provoque une erreur.",
+        "exemple": "age = 36\n# Ceci produit une erreur :\ntxt = \"My name is John, I am \" + age\nprint(txt)"
+      },
+      {
+        "titre": "F-Strings",
+        "explication": "Les f-strings ont ete introduites en Python 3.6 et sont maintenant la maniere preferee de formater des strings. Pour creer une f-string, on met un 'f' devant la string et on utilise des accolades {} comme emplacements (placeholders) pour les variables.",
+        "exemple": "age = 36\ntxt = f\"My name is John, I am {age}\"\nprint(txt)"
+      },
+      {
+        "titre": "Placeholders et Modifiers",
+        "explication": "Un placeholder peut contenir des variables, des operations, des fonctions et des modificateurs de format.",
+        "exemple": "price = 59\ntxt = f\"The price is {price} dollars\"\nprint(txt)"
+      },
+      {
+        "titre": "Modifier le format (nombre de decimales)",
+        "explication": "Un modifier s'ajoute avec deux points ':' suivi d'un type de formatage valide, comme '.2f' qui signifie un nombre a virgule fixe avec 2 decimales.",
+        "exemple": "price = 59\ntxt = f\"The price is {price:.2f} dollars\"\nprint(txt)"
+      },
+      {
+        "titre": "Operations dans un placeholder",
+        "explication": "Un placeholder peut contenir du code Python, comme des operations mathematiques.",
+        "exemple": "txt = f\"The price is {20 * 59} dollars\"\nprint(txt)"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Si x = 9, quelle est la bonne syntaxe pour afficher 'The price is 9.00 dollars' ?",
+      "type": "qcm",
+      "choix": ["print(f'The price is {x:.2f} dollars')", "print(f'The price is {x:2} dollars')", "print(f'The price is {x:format(2)} dollars')"],
+      "reponse": "print(f'The price is {x:.2f} dollars')",
+      "explication": "':.2f' signifie 'nombre a virgule fixe (float) avec 2 decimales'. C'est le format standard pour afficher des prix."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Cree une variable nom = 'Malo' et age = 25, puis affiche 'Je m'appelle Malo et j'ai 25 ans' en utilisant une f-string.",
+      "type": "code",
+      "reponse": "nom = \"Malo\"\nage = 25\nprint(f\"Je m'appelle {nom} et j'ai {age} ans\")",
+      "resultat_attendu": "Je m'appelle Malo et j'ai 25 ans"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Cree une variable prix = 19.5 et affiche-la avec exactement 2 decimales dans une phrase du type 'Total: 19.50 EUR'.",
+      "type": "code",
+      "reponse": "prix = 19.5\nprint(f\"Total: {prix:.2f} EUR\")",
+      "resultat_attendu": "Total: 19.50 EUR"
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Utilise une f-string avec une operation mathematique DANS le placeholder pour afficher le resultat de 15 multiplie par 3, sans creer de variable intermediaire.",
+      "type": "code",
+      "reponse": "print(f\"Le resultat est {15 * 3}\")",
+      "resultat_attendu": "Le resultat est 45"
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : cree une variable nombre = 1234567 et affiche-la formatee avec des separateurs de milliers, du type '1,234,567' (indice: le modifier ',' existe dans les f-strings).",
+      "type": "code",
+      "reponse": "nombre = 1234567\nprint(f\"{nombre:,}\")",
+      "resultat_attendu": "1,234,567",
+      "explication": "Le modifier ',' ajoute automatiquement des virgules comme separateurs de milliers, tres utile pour l'affichage de grands nombres."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : cree une variable ratio = 0.4567 et affiche-la comme un pourcentage avec une seule decimale, du type '45.7%' (indice: le modifier '%' existe et multiplie automatiquement par 100).",
+      "type": "code",
+      "reponse": "ratio = 0.4567\nprint(f\"{ratio:.1%}\")",
+      "resultat_attendu": "45.7%",
+      "explication": "Le modifier '%' convertit automatiquement une valeur decimale (0.4567) en pourcentage (multiplie par 100 et ajoute le symbole %), '.1' fixe une seule decimale."
+    }
+  ]
+}

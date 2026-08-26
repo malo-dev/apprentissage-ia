@@ -1,0 +1,83 @@
+{
+  "id": "arithmetic-operators",
+  "titre": "Python Arithmetic Operators",
+  "description": "Les operateurs arithmetiques : +, -, *, /, %, **, // et la difference entre division normale et division entiere.",
+  "cours": {
+    "introduction": "Les operateurs arithmetiques sont utilises avec des valeurs numeriques pour effectuer des operations mathematiques courantes.",
+    "table_operateurs": [
+      { "operateur": "+", "nom": "Addition", "exemple": "x + y" },
+      { "operateur": "-", "nom": "Subtraction", "exemple": "x - y" },
+      { "operateur": "*", "nom": "Multiplication", "exemple": "x * y" },
+      { "operateur": "/", "nom": "Division", "exemple": "x / y" },
+      { "operateur": "%", "nom": "Modulus", "exemple": "x % y" },
+      { "operateur": "**", "nom": "Exponentiation", "exemple": "x ** y" },
+      { "operateur": "//", "nom": "Floor division", "exemple": "x // y" }
+    ],
+    "sections": [
+      {
+        "titre": "Exemple complet",
+        "exemple": "x = 15\ny = 4\n\nprint(x + y)\nprint(x - y)\nprint(x * y)\nprint(x / y)\nprint(x % y)\nprint(x ** y)\nprint(x // y)"
+      },
+      {
+        "titre": "La division en Python",
+        "explication": "Python possede deux operateurs de division : / (division, renvoie toujours un float) et // (floor division, renvoie toujours un entier arrondi VERS LE BAS).",
+        "exemple": "x = 12\ny = 5\n\nprint(x / y)   # 2.4 (float)\nprint(x // y)  # 2 (arrondi vers le bas)"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Quel est le resultat de 15 % 4 ?",
+      "type": "qcm",
+      "choix": ["3", "3.75", "4"],
+      "reponse": "3",
+      "explication": "15 % 4 renvoie le RESTE de la division entiere : 15 = 3*4 + 3, donc le reste est 3."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Cree x = 7 et y = 2, puis affiche le resultat des 7 operateurs arithmetiques du cours (+, -, *, /, %, **, //) entre x et y.",
+      "type": "code",
+      "reponse": "x = 7\ny = 2\n\nprint(x + y)\nprint(x - y)\nprint(x * y)\nprint(x / y)\nprint(x % y)\nprint(x ** y)\nprint(x // y)",
+      "resultat_attendu": "9\n5\n14\n3.5\n1\n49\n3"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Avec des nombres NEGATIFS : que renvoie -7 // 2 ? Est-ce -3 ou -4 ? Devine avant de tester (rappel : floor division arrondit vers le bas, pas vers zero).",
+      "type": "code",
+      "reponse": "print(-7 // 2)",
+      "resultat_attendu": "-4",
+      "explication": "-7 / 2 = -3.5. 'Arrondir vers le bas' (floor) signifie vers MOINS l'infini, pas vers zero. Le nombre entier le plus proche en dessous de -3.5 est -4, pas -3. C'est un piege classique."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Verifie mathematiquement la relation entre / , // et % : pour x = 17 et y = 5, montre que x == (x // y) * y + (x % y) est toujours vrai.",
+      "type": "code",
+      "reponse": "x = 17\ny = 5\nprint(x == (x // y) * y + (x % y))",
+      "resultat_attendu": "True",
+      "explication": "C'est la formule fondamentale de la division euclidienne : dividende = (quotient * diviseur) + reste. Elle est toujours vraie, meme avec des nombres negatifs."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : calcule 2 ** 0.5 (racine carree de 2 via l'exponentiation). Puis calcule 2 ** -1 (exposant negatif). Devine les deux resultats avant d'executer.",
+      "type": "code",
+      "reponse": "print(2 ** 0.5)   # racine carree\nprint(2 ** -1)    # inverse",
+      "resultat_attendu": "1.4142135623730951\n0.5",
+      "explication": "** accepte des exposants non entiers : un exposant de 0.5 calcule la racine carree, un exposant negatif calcule l'inverse (1/2^1 = 0.5). C'est une astuce tres utile a connaitre."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction convertir_secondes(total_secondes) qui convertit un nombre de secondes en un format 'HH:MM:SS' (heures, minutes, secondes), en utilisant UNIQUEMENT // et % (pas de librairie datetime). Teste avec 3725 secondes (doit donner 01:02:05).",
+      "type": "code",
+      "reponse": "def convertir_secondes(total_secondes):\n    heures = total_secondes // 3600\n    reste = total_secondes % 3600\n    minutes = reste // 60\n    secondes = reste % 60\n    return f\"{heures:02d}:{minutes:02d}:{secondes:02d}\"\n\nprint(convertir_secondes(3725))",
+      "resultat_attendu": "01:02:05",
+      "explication": "Combine // et % en cascade : d'abord extraire les heures completes (// 3600), puis travailler sur le RESTE (% 3600) pour en extraire les minutes, et ainsi de suite. Le format :02d force l'affichage sur 2 chiffres avec un zero devant si besoin."
+    }
+  ]
+}

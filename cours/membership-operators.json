@@ -1,0 +1,85 @@
+{
+  "id": "membership-operators",
+  "titre": "Python Membership Operators",
+  "description": "Les operateurs d'appartenance in / not in, pour tester la presence d'une valeur dans une sequence (liste, string, etc).",
+  "cours": {
+    "introduction": "Les operateurs d'appartenance sont utilises pour tester si une sequence est presente dans un objet.",
+    "table_operateurs": [
+      { "operateur": "in", "description": "Renvoie True si une sequence avec la valeur specifiee est presente dans l'objet", "exemple": "x in y" },
+      { "operateur": "not in", "description": "Renvoie True si une sequence avec la valeur specifiee n'est PAS presente dans l'objet", "exemple": "x not in y" }
+    ],
+    "sections": [
+      {
+        "titre": "in avec une liste",
+        "explication": "Verifie si 'banana' est present dans une liste.",
+        "exemple": "fruits = [\"apple\", \"banana\", \"cherry\"]\n\nprint(\"banana\" in fruits)"
+      },
+      {
+        "titre": "not in avec une liste",
+        "explication": "Verifie si 'pineapple' n'est PAS present dans une liste.",
+        "exemple": "fruits = [\"apple\", \"banana\", \"cherry\"]\n\nprint(\"pineapple\" not in fruits)"
+      },
+      {
+        "titre": "Appartenance dans une string",
+        "explication": "Les operateurs d'appartenance fonctionnent aussi avec les strings.",
+        "exemple": "text = \"Hello World\"\n\nprint(\"H\" in text)\nprint(\"hello\" in text)\nprint(\"z\" not in text)"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Que fait l'operateur in ?",
+      "type": "qcm",
+      "choix": ["Verifie si une valeur existe dans une sequence", "Ajoute une valeur a une liste", "Compare deux valeurs"],
+      "reponse": "Verifie si une valeur existe dans une sequence",
+      "explication": "in teste l'appartenance : est-ce que cette valeur se trouve dans cette collection (liste, string, tuple, dict, set) ?"
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Avec text = 'Hello World', verifie pourquoi 'hello' in text renvoie False (attention a la casse !), puis corrige pour que ca fonctionne.",
+      "type": "code",
+      "reponse": "text = \"Hello World\"\nprint(\"hello\" in text)        # False, casse differente\nprint(\"hello\" in text.lower())  # True, on compare en minuscules",
+      "resultat_attendu": "False\nTrue",
+      "explication": "in est sensible a la casse. 'hello' (minuscule) n'est pas dans 'Hello World' (majuscule au H). Il faut convertir les deux cotes dans la meme casse avec lower() ou upper() pour une comparaison insensible a la casse."
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Avec un dictionnaire personne = {'nom': 'Malo', 'age': 25}, teste ce que verifie 'in' par defaut : est-ce que 'nom' in personne teste les CLES ou les VALEURS ?",
+      "type": "code",
+      "reponse": "personne = {\"nom\": \"Malo\", \"age\": 25}\nprint(\"nom\" in personne)     # True : teste les cles\nprint(\"Malo\" in personne)   # False : ne teste PAS les valeurs par defaut\nprint(\"Malo\" in personne.values())  # True : il faut explicitement .values()",
+      "resultat_attendu": "True\nFalse\nTrue",
+      "explication": "Par defaut, 'in' sur un dictionnaire teste uniquement les CLES, pas les valeurs. Pour tester les valeurs, il faut explicitement utiliser .values()."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Ecris une fonction contient_voyelle(mot) qui renvoie True si au moins une voyelle (a,e,i,o,u) se trouve dans le mot, en utilisant 'in' sur une string de voyelles combinee a 'any()'.",
+      "type": "code",
+      "reponse": "def contient_voyelle(mot):\n    return any(lettre in \"aeiouAEIOU\" for lettre in mot)\n\nprint(contient_voyelle(\"rythm\"))\nprint(contient_voyelle(\"python\"))",
+      "resultat_attendu": "False\nTrue",
+      "explication": "'rythm' ne contient aucune des voyelles classiques (a,e,i,o,u), contrairement a 'python' qui contient un 'o'."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : compare la VITESSE conceptuelle de 'in' sur une liste vs sur un set pour de gros volumes de donnees. Cree une liste et un set des nombres de 0 a 9999, et explique pourquoi 9999 in mon_set est generalement plus rapide que 9999 in ma_liste (sans avoir besoin de mesurer precisement, explique la raison structurelle).",
+      "type": "code",
+      "reponse": "ma_liste = list(range(10000))\nmon_set = set(range(10000))\n\nprint(9999 in ma_liste)\nprint(9999 in mon_set)",
+      "resultat_attendu": "True\nTrue",
+      "explication": "Sur une liste, 'in' doit parcourir les elements un par un dans le pire des cas (recherche lineaire, O(n)). Sur un set (base sur une table de hachage, comme un dictionnaire), 'in' calcule directement le hash de la valeur et va chercher a l'emplacement correspondant, sans parcourir tout le reste (en moyenne O(1)). Pour de tres grosses collections ou l'on teste l'appartenance souvent, un set est bien plus performant qu'une liste."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction tous_presents(elements, collection) qui verifie si TOUS les elements d'une liste sont presents dans une autre collection, en combinant 'in', 'all()' et une comprehension. Teste avec elements=['pomme','kiwi'] et collection=['pomme','banane','kiwi','fraise'], puis avec elements=['pomme','mangue'].",
+      "type": "code",
+      "reponse": "def tous_presents(elements, collection):\n    return all(e in collection for e in elements)\n\nprint(tous_presents([\"pomme\", \"kiwi\"], [\"pomme\", \"banane\", \"kiwi\", \"fraise\"]))\nprint(tous_presents([\"pomme\", \"mangue\"], [\"pomme\", \"banane\", \"kiwi\", \"fraise\"]))",
+      "resultat_attendu": "True\nFalse",
+      "explication": "all() renvoie True seulement si TOUS les elements de l'expression generatrice sont True. Des que 'mangue' n'est pas trouve, all() coupe court (short-circuit) et renvoie False."
+    }
+  ]
+}

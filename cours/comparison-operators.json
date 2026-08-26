@@ -1,0 +1,84 @@
+{
+  "id": "comparison-operators",
+  "titre": "Python Comparison Operators",
+  "description": "Les operateurs de comparaison : ==, !=, >, <, >=, <= et l'enchainement de comparaisons (chaining).",
+  "cours": {
+    "introduction": "Les operateurs de comparaison sont utilises pour comparer deux valeurs.",
+    "table_operateurs": [
+      { "operateur": "==", "nom": "Equal", "exemple": "x == y" },
+      { "operateur": "!=", "nom": "Not equal", "exemple": "x != y" },
+      { "operateur": ">", "nom": "Greater than", "exemple": "x > y" },
+      { "operateur": "<", "nom": "Less than", "exemple": "x < y" },
+      { "operateur": ">=", "nom": "Greater than or equal to", "exemple": "x >= y" },
+      { "operateur": "<=", "nom": "Less than or equal to", "exemple": "x <= y" }
+    ],
+    "sections": [
+      {
+        "titre": "Exemples",
+        "explication": "Les operateurs de comparaison renvoient True ou False selon la comparaison.",
+        "exemple": "x = 5\ny = 3\n\nprint(x == y)\nprint(x != y)\nprint(x > y)\nprint(x < y)\nprint(x >= y)\nprint(x <= y)"
+      },
+      {
+        "titre": "Enchainer les comparaisons (Chaining)",
+        "explication": "Python permet de chainer les operateurs de comparaison directement, ce qui est equivalent a utiliser 'and' entre deux comparaisons.",
+        "exemple": "x = 5\n\nprint(1 < x < 10)\n\nprint(1 < x and x < 10)"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Quel est le resultat de 5 == 5 ?",
+      "type": "qcm",
+      "choix": ["True", "False", "5"],
+      "reponse": "True",
+      "explication": "== compare l'egalite de deux valeurs. 5 est bien egal a 5, donc True."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Cree x = 8 et y = 8.0 (un int et un float). Que renvoie x == y ? Python considere-t-il ces deux valeurs comme egales meme si les types sont differents ?",
+      "type": "code",
+      "reponse": "x = 8\ny = 8.0\nprint(x == y)\nprint(type(x))\nprint(type(y))",
+      "resultat_attendu": "True\n<class 'int'>\n<class 'float'>",
+      "explication": "== compare la VALEUR, pas le type. 8 et 8.0 representent le meme nombre mathematiquement, donc == renvoie True, meme si type(x) et type(y) sont differents."
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Utilise le chaining pour verifier en UNE seule expression si x = 15 est compris entre 10 et 20 (inclus des deux cotes). Puis reecris la meme chose avec 'and' pour comparer.",
+      "type": "code",
+      "reponse": "x = 15\nprint(10 <= x <= 20)\nprint(10 <= x and x <= 20)",
+      "resultat_attendu": "True\nTrue",
+      "explication": "10 <= x <= 20 est strictement equivalent a (10 <= x) and (x <= 20), mais plus lisible et plus proche de la notation mathematique."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Compare deux strings avec > : 'banane' > 'ananas'. Devine le resultat avant de tester (indice : les strings se comparent par ordre alphabetique, lettre par lettre).",
+      "type": "code",
+      "reponse": "print(\"banane\" > \"ananas\")",
+      "resultat_attendu": "True",
+      "explication": "Les operateurs de comparaison fonctionnent aussi sur les strings : ils comparent alphabetiquement caractere par caractere (en realite selon le code Unicode de chaque caractere). 'b' vient apres 'a' dans l'alphabet, donc 'banane' > 'ananas'."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : que se passe-t-il si on chaine des comparaisons avec des valeurs qui NE sont PAS coherentes entre elles, comme 5 < 3 < 10 ? Devine puis verifie, et explique pourquoi (indice: pense a l'equivalent avec 'and').",
+      "type": "code",
+      "reponse": "print(5 < 3 < 10)\nprint(5 < 3 and 3 < 10)",
+      "resultat_attendu": "False\nFalse",
+      "explication": "5 < 3 est deja False. Meme si 3 < 10 est True, un 'and' entre False et True donne False. Le chaining s'arrete logiquement des que la premiere comparaison echoue (court-circuit), exactement comme and."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction est_dans_intervalle(valeur, mini, maxi) qui utilise le chaining de comparaisons pour verifier si valeur est comprise entre mini et maxi (inclus). Teste-la pour valider un age (entre 0 et 120) avec les valeurs -5, 45, 150.",
+      "type": "code",
+      "reponse": "def est_dans_intervalle(valeur, mini, maxi):\n    return mini <= valeur <= maxi\n\nprint(est_dans_intervalle(-5, 0, 120))\nprint(est_dans_intervalle(45, 0, 120))\nprint(est_dans_intervalle(150, 0, 120))",
+      "resultat_attendu": "False\nTrue\nFalse",
+      "explication": "Cette fonction generique reutilise le chaining pour rendre le code plus lisible qu'un if avec deux conditions separees par and."
+    }
+  ]
+}

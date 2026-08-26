@@ -1,0 +1,96 @@
+{
+  "id": "operator-precedence",
+  "titre": "Python Operator Precedence",
+  "description": "L'ordre de priorite dans lequel les operations sont evaluees, du plus prioritaire au moins prioritaire, et l'evaluation gauche a droite.",
+  "cours": {
+    "introduction": "L'ordre de priorite des operateurs (operator precedence) decrit dans quel ordre les operations sont effectuees.",
+    "sections": [
+      {
+        "titre": "Les parentheses en premier",
+        "explication": "Les parentheses ont la priorite la plus haute : les expressions a l'interieur doivent etre evaluees en premier.",
+        "exemple": "print((6 + 3) - (6 + 3))"
+      },
+      {
+        "titre": "Multiplication avant addition",
+        "explication": "La multiplication * a une priorite plus haute que l'addition +, donc les multiplications sont evaluees avant les additions.",
+        "exemple": "print(100 + 5 * 3)  # 115, pas 315"
+      }
+    ],
+    "ordre_priorite": [
+      { "rang": 1, "operateurs": "()", "description": "Parentheses" },
+      { "rang": 2, "operateurs": "**", "description": "Exponentiation" },
+      { "rang": 3, "operateurs": "+x  -x  ~x", "description": "Plus unaire, moins unaire, NOT bit a bit" },
+      { "rang": 4, "operateurs": "*  /  //  %", "description": "Multiplication, division, division entiere, modulo" },
+      { "rang": 5, "operateurs": "+  -", "description": "Addition et soustraction" },
+      { "rang": 6, "operateurs": "<<  >>", "description": "Decalages binaires gauche et droite" },
+      { "rang": 7, "operateurs": "&", "description": "AND bit a bit" },
+      { "rang": 8, "operateurs": "^", "description": "XOR bit a bit" },
+      { "rang": 9, "operateurs": "|", "description": "OR bit a bit" },
+      { "rang": 10, "operateurs": "==  !=  >  >=  <  <=  is  is not  in  not in", "description": "Comparaisons, identite et appartenance" },
+      { "rang": 11, "operateurs": "not", "description": "NOT logique" },
+      { "rang": 12, "operateurs": "and", "description": "AND logique" },
+      { "rang": 13, "operateurs": "or", "description": "OR logique" }
+    ],
+    "note": "Ce tableau commence par la priorite la PLUS HAUTE en haut, jusqu'a la plus basse en bas.",
+    "evaluation_gauche_droite": {
+      "explication": "Si deux operateurs ont la meme priorite, l'expression est evaluee de GAUCHE A DROITE.",
+      "exemple": "print(5 + 4 - 7 + 3)  # + et - ont meme priorite, evalues dans l'ordre d'ecriture"
+    }
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Quel est le resultat de 2 + 3 * 4 ?",
+      "type": "qcm",
+      "choix": ["20", "14", "24"],
+      "reponse": "14",
+      "explication": "* a une priorite plus haute que +, donc 3 * 4 = 12 est calcule en premier, puis 2 + 12 = 14."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Sans parentheses, calcule 10 - 2 ** 2. Devine le resultat avant de tester : est-ce (10-2)**2 = 64 ou 10-(2**2) = 6 ?",
+      "type": "code",
+      "reponse": "print(10 - 2 ** 2)",
+      "resultat_attendu": "6",
+      "explication": "** a une priorite bien plus haute que -. 2**2 = 4 est calcule d'abord, puis 10 - 4 = 6."
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Devine puis verifie le resultat de : True or False and False. Attention, and est prioritaire sur or dans le tableau du cours !",
+      "type": "code",
+      "reponse": "print(True or False and False)",
+      "resultat_attendu": "True",
+      "explication": "and est evalue avant or (rang 12 contre rang 13, donc and est plus prioritaire). L'expression devient True or (False and False) = True or False = True."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Utilise des parentheses pour forcer un ordre different de la priorite naturelle : calcule (2 + 3) * 4 et compare avec 2 + 3 * 4 (sans parentheses). Explique la difference.",
+      "type": "code",
+      "reponse": "print((2 + 3) * 4)   # parentheses forcent l'addition en premier\nprint(2 + 3 * 4)     # priorite naturelle : multiplication en premier",
+      "resultat_attendu": "20\n14",
+      "explication": "Les parentheses ont TOUJOURS la priorite maximale et permettent de forcer explicitement un ordre d'evaluation different de la priorite par defaut."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : sans regarder le tableau, essaie de deviner le resultat de 5 > 3 == True (chainer une comparaison numerique et une comparaison avec un booleen), puis verifie. Attention, c'est un piege du chaining vu dans le cours sur les comparisons operators !",
+      "type": "code",
+      "reponse": "print(5 > 3 == True)\nprint((5 > 3) and (3 == True))",
+      "resultat_attendu": "False\nFalse",
+      "explication": "5 > 3 == True est en realite un CHAINING de comparaisons (vu dans Comparison Operators), equivalent a (5 > 3) and (3 == True). 5 > 3 est True, mais 3 == True est False (car True equivaut a 1, pas 3). Donc le resultat final est False. Piege classique qui melange priorite et chaining."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une expression SANS aucune parenthese qui calcule : (5 puissance 2) plus (10 divise par 2) moins (3 fois 4), en te fiant uniquement a l'ordre de priorite naturel du tableau. Verifie que le resultat vaut 18.",
+      "type": "code",
+      "reponse": "resultat = 5 ** 2 + 10 / 2 - 3 * 4\nprint(resultat)",
+      "resultat_attendu": "18.0",
+      "explication": "Ordre d'evaluation naturel : ** (25) puis * et / de gauche a droite (10/2=5.0, 3*4=12), puis + et - de gauche a droite (25 + 5.0 - 12 = 18.0). Note que le resultat est un FLOAT (18.0) car / a ete utilise (voir le cours Arithmetic Operators : / renvoie toujours un float)."
+    }
+  ]
+}

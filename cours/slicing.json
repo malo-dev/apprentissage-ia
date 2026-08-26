@@ -1,0 +1,85 @@
+{
+  "id": "slicing",
+  "titre": "Python - Slicing Strings",
+  "description": "Extraire des portions de strings avec la syntaxe de slice : depuis le debut, jusqu'a la fin, et avec des index negatifs.",
+  "cours": {
+    "introduction": "On peut recuperer une portion (un intervalle) de caracteres en utilisant la syntaxe de slice. On precise un index de depart et un index de fin, separes par deux points (:).",
+    "sections": [
+      {
+        "titre": "Slicing de base",
+        "explication": "On recupere les caracteres de la position de depart jusqu'a la position de fin (non incluse). Le premier caractere a l'index 0.",
+        "exemple": "b = \"Hello, World!\"\nprint(b[2:5])  # caracteres de la position 2 a 5 (non incluse)"
+      },
+      {
+        "titre": "Slice depuis le debut",
+        "explication": "En omettant l'index de depart, l'intervalle commence au tout premier caractere.",
+        "exemple": "b = \"Hello, World!\"\nprint(b[:5])  # du debut jusqu'a la position 5 (non incluse)"
+      },
+      {
+        "titre": "Slice jusqu'a la fin",
+        "explication": "En omettant l'index de fin, l'intervalle va jusqu'au dernier caractere.",
+        "exemple": "b = \"Hello, World!\"\nprint(b[2:])  # de la position 2 jusqu'a la fin"
+      },
+      {
+        "titre": "Index negatifs",
+        "explication": "On peut utiliser des index negatifs pour demarrer le slice depuis la fin de la string. -1 est le dernier caractere, -2 l'avant-dernier, etc.",
+        "exemple": "b = \"Hello, World!\"\nprint(b[-5:-2])  # de 'o' (position -5) a 'd' (position -2, non incluse)"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Avec b = \"Hello, World!\", que renvoie b[7:12] ?",
+      "type": "code",
+      "reponse": "b = \"Hello, World!\"\nprint(b[7:12])",
+      "resultat_attendu": "World",
+      "explication": "Index : H(0) e(1) l(2) l(3) o(4) ,(5) espace(6) W(7) o(8) r(9) l(10) d(11) !(12). b[7:12] prend de 7 a 11 inclus, donc 'World'."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Avec b = \"Hello, World!\", recupere uniquement 'Hello' en utilisant un slice qui omet l'index de depart.",
+      "type": "code",
+      "reponse": "b = \"Hello, World!\"\nprint(b[:5])",
+      "resultat_attendu": "Hello"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Avec b = \"Hello, World!\", recupere le dernier caractere '!' en utilisant UNIQUEMENT un index negatif (pas de len()).",
+      "type": "code",
+      "reponse": "b = \"Hello, World!\"\nprint(b[-1])",
+      "resultat_attendu": "!",
+      "explication": "b[-1] est un raccourci tres utilise pour recuperer le dernier caractere sans avoir a connaitre la longueur de la string."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Avec b = \"Hello, World!\", recupere 'World!' (les 6 derniers caracteres) en utilisant uniquement des index negatifs.",
+      "type": "code",
+      "reponse": "b = \"Hello, World!\"\nprint(b[-6:])",
+      "resultat_attendu": "World!",
+      "explication": "En omettant l'index de fin apres un index negatif, le slice va jusqu'au tout dernier caractere inclus."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : b = \"Hello, World!\". Utilise le slicing avec un 'step' (troisieme parametre b[debut:fin:pas]) pour afficher seulement un caractere sur deux de toute la string. Devine le resultat avant d'executer.",
+      "type": "code",
+      "reponse": "b = \"Hello, World!\"\nprint(b[::2])",
+      "resultat_attendu": "Hlo ol!",
+      "explication": "Le troisieme parametre du slice est le 'pas' (step). b[::2] prend un caractere sur deux depuis le debut jusqu'a la fin."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : en une seule ligne de slicing (sans mot[::-1] direct sur toute la chaine, mais en te resservant du meme principe de step negatif), inverse seulement les 5 premiers caracteres de b = \"Hello, World!\" pour obtenir 'olleH'.",
+      "type": "code",
+      "reponse": "b = \"Hello, World!\"\nprint(b[4::-1])",
+      "resultat_attendu": "olleH",
+      "explication": "b[4::-1] part de l'index 4 ('o' de Hello) et remonte jusqu'au debut (pas de -1), ce qui inverse exactement les 5 premiers caracteres."
+    }
+  ]
+}

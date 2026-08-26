@@ -1,0 +1,56 @@
+{
+  "id": "operators",
+  "titre": "Python Operators",
+  "description": "Introduction aux operateurs Python : leur role de base et les 7 grandes categories qui seront detaillees ensuite.",
+  "cours": {
+    "introduction": "Les operateurs sont utilises pour effectuer des operations sur des variables et des valeurs.",
+    "sections": [
+      {
+        "titre": "Exemple de base : l'operateur +",
+        "explication": "L'operateur + est souvent utilise pour additionner deux valeurs, mais il peut aussi additionner une variable et une valeur, ou deux variables entre elles.",
+        "exemple": "print(10 + 5)\n\nsum1 = 100 + 50      # 150 (100 + 50)\nsum2 = sum1 + 250    # 400 (150 + 250)\nsum3 = sum2 + sum2   # 800 (400 + 400)"
+      },
+      {
+        "titre": "Les 7 categories d'operateurs Python",
+        "explication": "Python divise les operateurs dans les groupes suivants (chacun sera detaille dans un cours a part) :",
+        "categories": [
+          "Arithmetic operators (operateurs arithmetiques : +, -, *, /, ...)",
+          "Assignment operators (operateurs d'assignation : =, +=, -=, ...)",
+          "Comparison operators (operateurs de comparaison : ==, !=, >, <, ...)",
+          "Logical operators (operateurs logiques : and, or, not)",
+          "Identity operators (operateurs d'identite : is, is not)",
+          "Membership operators (operateurs d'appartenance : in, not in)",
+          "Bitwise operators (operateurs binaires/bit a bit : &, |, ^, ~, <<, >>)"
+        ]
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "En reprenant exactement le style de l'exemple du cours, cree sum1 = 20 + 5, puis sum2 = sum1 + 100, puis sum3 = sum2 + sum2. Affiche les trois resultats.",
+      "type": "code",
+      "reponse": "sum1 = 20 + 5\nsum2 = sum1 + 100\nsum3 = sum2 + sum2\nprint(sum1)\nprint(sum2)\nprint(sum3)",
+      "resultat_attendu": "25\n125\n250"
+    },
+    {
+      "id": 2,
+      "niveau": "moyen",
+      "question": "Sans regarder de documentation, essaie de deviner puis de tester ce que fait chacun de ces operateurs sur des entiers : //, %, **. Utilise 17 et 5 comme operandes pour chacun.",
+      "type": "code",
+      "reponse": "print(17 // 5)  # division entiere\nprint(17 % 5)   # modulo (reste)\nprint(17 ** 5)  # puissance",
+      "resultat_attendu": "3\n2\n1419857",
+      "explication": "// est la division entiere (tronquee), % est le modulo (reste de la division), ** est l'exposant (puissance). Ces trois-la sont souvent oublies alors qu'ils font partie des operateurs arithmetiques."
+    },
+    {
+      "id": 3,
+      "niveau": "difficile",
+      "question": "Challenge (anticipation) : d'apres les noms des 7 categories du cours, devine ce que fera chacune de ces lignes AVANT de les executer, puis verifie : (1) 5 in [1,2,3,4,5]  (2) 5 is 5  (3) 5 & 3  (4) not True.",
+      "type": "code",
+      "reponse": "print(5 in [1, 2, 3, 4, 5])  # membership -> True\nprint(5 is 5)                 # identity -> True (pour les petits int, souvent mis en cache)\nprint(5 & 3)                  # bitwise AND -> 1\nprint(not True)               # logical -> False",
+      "resultat_attendu": "True\nTrue\n1\nFalse",
+      "explication": "Ceci est une mise en bouche avant les cours dedies. 'in' teste l'appartenance a une collection. 'is' teste l'identite (meme objet en memoire, pas juste meme valeur). '&' est un AND binaire bit a bit (0101 & 0011 = 0001 = 1). 'not' inverse un booleen."
+    }
+  ]
+}

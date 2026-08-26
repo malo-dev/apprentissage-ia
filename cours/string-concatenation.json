@@ -1,0 +1,74 @@
+{
+  "id": "string-concatenation",
+  "titre": "Python - String Concatenation",
+  "description": "Combiner plusieurs strings ensemble avec l'operateur +.",
+  "cours": {
+    "introduction": "Pour concatener (combiner) deux strings, on peut utiliser l'operateur +.",
+    "sections": [
+      {
+        "titre": "Concatenation de base",
+        "explication": "On fusionne la variable a avec la variable b dans une variable c.",
+        "exemple": "a = \"Hello\"\nb = \"World\"\nc = a + b\nprint(c)"
+      },
+      {
+        "titre": "Ajouter un espace",
+        "explication": "Pour ajouter un espace entre les deux mots, on ajoute une string \" \" entre les deux.",
+        "exemple": "a = \"Hello\"\nb = \"World\"\nc = a + \" \" + b\nprint(c)"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Cree deux variables prenom = 'Malo' et nom = 'Dev', puis concatene-les avec un espace pour afficher 'Malo Dev'.",
+      "type": "code",
+      "reponse": "prenom = \"Malo\"\nnom = \"Dev\"\nprint(prenom + \" \" + nom)",
+      "resultat_attendu": "Malo Dev"
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Sans utiliser +, essaie print('Hello', 'World') (avec une virgule au lieu d'un +). Quelle difference avec la concatenation par + ?",
+      "type": "code",
+      "reponse": "print(\"Hello\", \"World\")",
+      "resultat_attendu": "Hello World",
+      "explication": "print() avec des virgules ajoute automatiquement un espace entre chaque argument, alors que + colle les chaines sans rien ajouter (il faut inserer soi-meme le \" \")."
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Essaie de concatener une string et un nombre : a = \"Age: \" + 25. Que se passe-t-il ? Corrige le code pour que ca fonctionne.",
+      "type": "code",
+      "reponse": "try:\n    a = \"Age: \" + 25\nexcept TypeError as e:\n    print(\"Erreur :\", e)\n\n# version corrigee :\nage = 25\na = \"Age: \" + str(age)\nprint(a)",
+      "resultat_attendu": "Erreur : can only concatenate str (not \"int\") to str\nAge: 25",
+      "explication": "Python ne convertit jamais automatiquement un int en str pour le + (contrairement a JavaScript). Il faut convertir explicitement avec str()."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Cree trois variables jour = '26', mois = '08', annee = '2026' et construis une date au format 'JJ/MM/AAAA' en les concatenant avec des '/'.",
+      "type": "code",
+      "reponse": "jour = \"26\"\nmois = \"08\"\nannee = \"2026\"\ndate = jour + \"/\" + mois + \"/\" + annee\nprint(date)",
+      "resultat_attendu": "26/08/2026"
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction construire_phrase(mots) qui prend une LISTE de mots (ex: ['Python', 'est', 'genial']) et les concatene en une seule phrase separee par des espaces, EN UTILISANT UNIQUEMENT l'operateur + dans une boucle (pas de join() ni de split()). Attention a ne pas avoir d'espace en trop au debut ou a la fin.",
+      "type": "code",
+      "reponse": "def construire_phrase(mots):\n    resultat = \"\"\n    for i in range(len(mots)):\n        resultat = resultat + mots[i]\n        if i != len(mots) - 1:\n            resultat = resultat + \" \"\n    return resultat\n\nprint(construire_phrase([\"Python\", \"est\", \"genial\"]))",
+      "resultat_attendu": "Python est genial",
+      "explication": "C'est volontairement plus complexe que ' '.join(mots) (la vraie facon idiomatique en Python), pour bien comprendre comment fonctionne une concatenation manuelle avec + et pourquoi join() existe."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : compare les performances mentalement. Pourquoi concatener des milliers de strings avec + dans une boucle est considere comme une MAUVAISE pratique en Python ? Ecris un exemple avec ''.join() a la place, plus efficace, qui construit la string '0123456789' a partir d'une liste de chiffres en string.",
+      "type": "code",
+      "reponse": "chiffres = [str(i) for i in range(10)]\nresultat = \"\".join(chiffres)\nprint(resultat)",
+      "resultat_attendu": "0123456789",
+      "explication": "Les strings sont IMMUABLES en Python : chaque + cree une toute nouvelle string en memoire et recopie tout le contenu precedent. Sur une boucle de milliers d'iterations, ca devient tres lent (complexite O(n carre)). join() est optimise pour assembler beaucoup de morceaux en une seule fois (O(n))."
+    }
+  ]
+}

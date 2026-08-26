@@ -1,0 +1,108 @@
+{
+  "id": "string-methods",
+  "titre": "Python - String Methods",
+  "description": "Reference complete des methodes integrees pour les strings. Toutes renvoient une NOUVELLE valeur, elles ne modifient jamais la string d'origine.",
+  "cours": {
+    "introduction": "Python possede un ensemble de methodes integrees utilisables sur les strings. Note importante : TOUTES les methodes de string renvoient de nouvelles valeurs, elles ne modifient JAMAIS la string d'origine (les strings sont immuables).",
+    "table_methodes": [
+      { "methode": "capitalize()", "description": "Met en majuscule le premier caractere" },
+      { "methode": "casefold()", "description": "Convertit la string en minuscules (version agressive de lower())" },
+      { "methode": "center()", "description": "Renvoie une string centree" },
+      { "methode": "count()", "description": "Renvoie le nombre d'occurrences d'une valeur dans la string" },
+      { "methode": "encode()", "description": "Renvoie une version encodee de la string" },
+      { "methode": "endswith()", "description": "Renvoie True si la string se termine par la valeur specifiee" },
+      { "methode": "expandtabs()", "description": "Definit la taille des tabulations de la string" },
+      { "methode": "find()", "description": "Cherche une valeur et renvoie sa position (ou -1 si non trouvee)" },
+      { "methode": "format()", "description": "Formate des valeurs specifiees dans une string" },
+      { "methode": "format_map()", "description": "Formate des valeurs specifiees dans une string" },
+      { "methode": "index()", "description": "Cherche une valeur et renvoie sa position (erreur si non trouvee)" },
+      { "methode": "isalnum()", "description": "True si tous les caracteres sont alphanumeriques" },
+      { "methode": "isalpha()", "description": "True si tous les caracteres sont alphabetiques" },
+      { "methode": "isascii()", "description": "True si tous les caracteres sont des caracteres ASCII" },
+      { "methode": "isdecimal()", "description": "True si tous les caracteres sont des decimaux" },
+      { "methode": "isdigit()", "description": "True si tous les caracteres sont des chiffres" },
+      { "methode": "isidentifier()", "description": "True si la string est un identifiant valide" },
+      { "methode": "islower()", "description": "True si tous les caracteres sont en minuscules" },
+      { "methode": "isnumeric()", "description": "True si tous les caracteres sont numeriques" },
+      { "methode": "isprintable()", "description": "True si tous les caracteres sont imprimables" },
+      { "methode": "isspace()", "description": "True si tous les caracteres sont des espaces" },
+      { "methode": "istitle()", "description": "True si la string suit les regles d'un titre" },
+      { "methode": "isupper()", "description": "True si tous les caracteres sont en majuscules" },
+      { "methode": "join()", "description": "Joint les elements d'un iterable en une string" },
+      { "methode": "ljust()", "description": "Renvoie une version justifiee a gauche de la string" },
+      { "methode": "lower()", "description": "Convertit la string en minuscules" },
+      { "methode": "lstrip()", "description": "Renvoie une version tronquee des espaces a gauche" },
+      { "methode": "maketrans()", "description": "Renvoie une table de traduction pour translate()" },
+      { "methode": "partition()", "description": "Renvoie un tuple divisant la string en trois parties" },
+      { "methode": "replace()", "description": "Renvoie une string ou une valeur est remplacee par une autre" },
+      { "methode": "rfind()", "description": "Cherche une valeur et renvoie sa DERNIERE position" },
+      { "methode": "rindex()", "description": "Cherche une valeur et renvoie sa DERNIERE position (erreur si non trouvee)" },
+      { "methode": "rjust()", "description": "Renvoie une version justifiee a droite de la string" },
+      { "methode": "rpartition()", "description": "Renvoie un tuple divisant la string en trois parties, depuis la droite" },
+      { "methode": "rsplit()", "description": "Divise la string au separateur specifie, depuis la droite" },
+      { "methode": "rstrip()", "description": "Renvoie une version tronquee des espaces a droite" },
+      { "methode": "split()", "description": "Divise la string au separateur specifie, renvoie une liste" },
+      { "methode": "splitlines()", "description": "Divise la string aux sauts de ligne, renvoie une liste" },
+      { "methode": "startswith()", "description": "Renvoie True si la string commence par la valeur specifiee" },
+      { "methode": "strip()", "description": "Renvoie une version tronquee des espaces (debut ET fin)" },
+      { "methode": "swapcase()", "description": "Inverse les casses : minuscules deviennent majuscules et vice-versa" },
+      { "methode": "title()", "description": "Met en majuscule la premiere lettre de chaque mot" },
+      { "methode": "translate()", "description": "Renvoie une string traduite" },
+      { "methode": "upper()", "description": "Convertit la string en majuscules" },
+      { "methode": "zfill()", "description": "Remplit la string avec des zeros au debut jusqu'a la longueur specifiee" }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Avec txt = 'python', utilise capitalize() pour afficher 'Python' (premiere lettre en majuscule seulement).",
+      "type": "code",
+      "reponse": "txt = \"python\"\nprint(txt.capitalize())",
+      "resultat_attendu": "Python"
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Avec txt = 'Hello, World!', utilise count() pour compter combien de fois la lettre 'l' apparait.",
+      "type": "code",
+      "reponse": "txt = \"Hello, World!\"\nprint(txt.count(\"l\"))",
+      "resultat_attendu": "3"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Avec txt = 'Hello, World!', utilise find() pour trouver la position du mot 'World'. Que renvoie find() si le mot n'existe pas, contrairement a index() ?",
+      "type": "code",
+      "reponse": "txt = \"Hello, World!\"\nprint(txt.find(\"World\"))\nprint(txt.find(\"Python\"))  # -1, ne plante pas\n\ntry:\n    txt.index(\"Python\")\nexcept ValueError as e:\n    print(\"index() plante :\", e)",
+      "resultat_attendu": "7\n-1\nindex() plante : substring not found",
+      "explication": "find() et index() font la meme chose, mais find() renvoie -1 si non trouve alors qu'index() leve une exception ValueError. find() est donc plus sur a utiliser quand on n'est pas certain que la valeur existe."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Utilise zfill() pour transformer le nombre 7 (en string '7') en '007' (rempli de zeros sur 3 caracteres). Utile pour numeroter des fichiers.",
+      "type": "code",
+      "reponse": "n = \"7\"\nprint(n.zfill(3))",
+      "resultat_attendu": "007"
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction valider_identifiant(txt) qui verifie si une string peut servir de nom de variable Python valide en utilisant isidentifier(), ET qu'elle est entierement en minuscules avec islower(). Teste avec 'mon_age', 'MonAge', '2age'.",
+      "type": "code",
+      "reponse": "def valider_identifiant(txt):\n    return txt.isidentifier() and txt.islower()\n\nprint(valider_identifiant(\"mon_age\"))\nprint(valider_identifiant(\"MonAge\"))\nprint(valider_identifiant(\"2age\"))",
+      "resultat_attendu": "True\nFalse\nFalse",
+      "explication": "isidentifier() verifie les regles Python (pas de commencer par un chiffre, pas d'espaces...). '2age' echoue car il commence par un chiffre. 'MonAge' echoue au test islower() car il contient des majuscules."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : avec txt = 'un-deux-trois-quatre', utilise partition() pour separer la string en 3 parties autour du PREMIER '-' seulement (pas tous), puis rpartition() pour separer autour du DERNIER '-'. Compare les deux resultats.",
+      "type": "code",
+      "reponse": "txt = \"un-deux-trois-quatre\"\nprint(txt.partition(\"-\"))\nprint(txt.rpartition(\"-\"))",
+      "resultat_attendu": "('un', '-', 'deux-trois-quatre')\n('un-deux-trois', '-', 'quatre')",
+      "explication": "partition() coupe au PREMIER separateur trouve en partant de la gauche, rpartition() coupe au DERNIER en partant de la droite. Contrairement a split(), ces methodes renvoient toujours exactement un tuple de 3 elements (avant, separateur, apres)."
+    }
+  ]
+}
