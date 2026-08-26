@@ -1,0 +1,100 @@
+{
+  "id": "numbers",
+  "titre": "Python Numbers",
+  "description": "Les trois types numeriques de Python (int, float, complex), leur conversion et la generation de nombres aleatoires.",
+  "cours": {
+    "introduction": "Il existe trois types numeriques en Python : int, float et complex. Les variables de type numerique sont creees des qu'on leur assigne une valeur.",
+    "sections": [
+      {
+        "titre": "Creation et verification du type",
+        "explication": "Pour verifier le type de n'importe quel objet, on utilise la fonction type().",
+        "exemple": "x = 1    # int\ny = 2.8  # float\nz = 1j   # complex\n\nprint(type(x))\nprint(type(y))\nprint(type(z))"
+      },
+      {
+        "titre": "Int",
+        "explication": "Int (integer) est un nombre entier, positif ou negatif, sans decimales, de longueur illimitee.",
+        "exemple": "x = 1\ny = 35656222554887711\nz = -3255522\n\nprint(type(x))\nprint(type(y))\nprint(type(z))"
+      },
+      {
+        "titre": "Float",
+        "explication": "Float (nombre a virgule flottante) est un nombre, positif ou negatif, contenant une ou plusieurs decimales.",
+        "exemple": "x = 1.10\ny = 1.0\nz = -35.59\n\nprint(type(x))\nprint(type(y))\nprint(type(z))"
+      },
+      {
+        "titre": "Float en notation scientifique",
+        "explication": "Un float peut aussi etre ecrit en notation scientifique, avec un 'e' pour indiquer la puissance de 10.",
+        "exemple": "x = 35e3\ny = 12E4\nz = -87.7e100\n\nprint(type(x))\nprint(type(y))\nprint(type(z))"
+      },
+      {
+        "titre": "Complex",
+        "explication": "Les nombres complexes s'ecrivent avec un 'j' pour la partie imaginaire.",
+        "exemple": "x = 3+5j\ny = 5j\nz = -5j\n\nprint(type(x))\nprint(type(y))\nprint(type(z))"
+      },
+      {
+        "titre": "Conversion de type (Type Conversion)",
+        "explication": "On peut convertir un type numerique en un autre avec les fonctions int(), float() et complex(). Note : on ne peut PAS convertir un complex vers un autre type numerique.",
+        "exemple": "x = 1    # int\ny = 2.8  # float\nz = 1j   # complex\n\n# convertir int en float\na = float(x)\n\n# convertir float en int\nb = int(y)\n\n# convertir int en complex\nc = complex(x)\n\nprint(a)\nprint(b)\nprint(c)\n\nprint(type(a))\nprint(type(b))\nprint(type(c))"
+      },
+      {
+        "titre": "Nombre aleatoire (Random Number)",
+        "explication": "Python n'a pas de fonction random() integree par defaut, mais possede un module 'random' pour generer des nombres aleatoires.",
+        "exemple": "import random\n\nprint(random.randrange(1, 10))"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Lequel de ces types N'EST PAS un type numerique valide en Python : int, long, float ?",
+      "type": "qcm",
+      "choix": ["int", "long", "float"],
+      "reponse": "long",
+      "explication": "'long' existait en Python 2 mais a ete fusionne avec 'int' en Python 3. Il n'existe plus."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Cree trois variables a, b, c contenant respectivement un int, un float et un complex, puis affiche leurs types.",
+      "type": "code",
+      "reponse": "a = 10\nb = 3.5\nc = 2j\n\nprint(type(a))\nprint(type(b))\nprint(type(c))",
+      "resultat_attendu": "<class 'int'>\n<class 'float'>\n<class 'complex'>"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Sans executer de code, devine le resultat et le type de : x = 35e3. Puis verifie avec print(x) et print(type(x)).",
+      "type": "code",
+      "reponse": "x = 35e3\nprint(x)\nprint(type(x))",
+      "resultat_attendu": "35000.0\n<class 'float'>",
+      "explication": "35e3 signifie 35 * 10^3 = 35000. Meme si le resultat est un nombre rond, la notation scientifique produit toujours un float."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Convertis le float 9.999 en int avec int(). Que devient la valeur ? Le resultat est-il arrondi ou tronque ?",
+      "type": "code",
+      "reponse": "x = 9.999\ny = int(x)\nprint(y)",
+      "resultat_attendu": "9",
+      "explication": "int() ne fait pas d'arrondi mathematique, il tronque simplement la partie decimale (il la coupe), meme pour 9.999 qui devient 9 et non 10."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Essaie de convertir un nombre complexe en int avec int(3+5j). Que se passe-t-il ? Capture l'erreur avec un bloc try/except et affiche un message clair.",
+      "type": "code",
+      "reponse": "try:\n    x = int(3 + 5j)\nexcept TypeError as e:\n    print(\"Conversion impossible :\", e)",
+      "resultat_attendu": "Conversion impossible : can't convert complex to int",
+      "explication": "Les nombres complexes ne peuvent pas etre convertis vers int ou float car ils n'ont pas d'ordre naturel (impossible de dire si 3+5j est plus grand ou plus petit qu'un autre complexe)."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : en utilisant le module random, ecris un petit jeu ou l'ordinateur tire un nombre aleatoire entre 1 et 20 avec random.randrange(1, 21), et affiche si ce nombre est pair ou impair (indice: utilise l'operateur modulo %).",
+      "type": "code",
+      "reponse": "import random\n\nnombre = random.randrange(1, 21)\nprint(\"Nombre tire :\", nombre)\n\nif nombre % 2 == 0:\n    print(\"Il est pair\")\nelse:\n    print(\"Il est impair\")",
+      "resultat_attendu": "Nombre tire : (varie a chaque execution)\nIl est pair (ou impair)",
+      "explication": "% renvoie le reste d'une division. Un nombre est pair si le reste de sa division par 2 vaut 0."
+    }
+  ]
+}

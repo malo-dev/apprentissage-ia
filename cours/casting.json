@@ -1,0 +1,91 @@
+{
+  "id": "casting",
+  "titre": "Python Casting",
+  "description": "Comment specifier ou forcer le type d'une variable (casting) avec les fonctions constructeur int(), float() et str().",
+  "cours": {
+    "introduction": "Python est un langage oriente objet, et utilise des classes pour definir les types de donnees, y compris ses types primitifs. Le casting (transtypage) se fait donc grace a des fonctions constructeur.",
+    "fonctions": [
+      {
+        "nom": "int()",
+        "explication": "Construit un nombre entier a partir d'un litteral int, d'un litteral float (en supprimant les decimales), ou d'un litteral string (si la chaine represente un nombre entier)."
+      },
+      {
+        "nom": "float()",
+        "explication": "Construit un nombre a virgule flottante a partir d'un litteral int, float, ou string (si la chaine represente un float ou un int)."
+      },
+      {
+        "nom": "str()",
+        "explication": "Construit une chaine de caracteres a partir de nombreux types de donnees, y compris des strings, des int et des float."
+      }
+    ],
+    "sections": [
+      {
+        "titre": "Casting vers Integers",
+        "exemple": "x = int(1)    # x sera 1\ny = int(2.8)  # y sera 2\nz = int(\"3\")  # z sera 3"
+      },
+      {
+        "titre": "Casting vers Floats",
+        "exemple": "x = float(1)      # x sera 1.0\ny = float(2.8)    # y sera 2.8\nz = float(\"3\")    # z sera 3.0\nw = float(\"4.2\")  # w sera 4.2"
+      },
+      {
+        "titre": "Casting vers Strings",
+        "exemple": "x = str(\"s1\")  # x sera 's1'\ny = str(2)     # y sera '2'\nz = str(3.0)   # z sera '3.0'"
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Que vaut y dans y = int(2.8) ? Et pourquoi (arrondi ou troncature) ?",
+      "type": "code",
+      "reponse": "y = int(2.8)\nprint(y)",
+      "resultat_attendu": "2",
+      "explication": "int() tronque toujours la partie decimale, il n'arrondit jamais. 2.8 devient donc 2, pas 3."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Convertis la chaine \"42\" en entier avec int(), puis additionne-lui 8. Affiche le resultat.",
+      "type": "code",
+      "reponse": "x = int(\"42\") + 8\nprint(x)",
+      "resultat_attendu": "50"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Essaie d'executer int(\"3.5\") (avec un point decimal dans la chaine). Que se passe-t-il ? Capture l'erreur avec try/except.",
+      "type": "code",
+      "reponse": "try:\n    x = int(\"3.5\")\nexcept ValueError as e:\n    print(\"Erreur :\", e)",
+      "resultat_attendu": "Erreur : invalid literal for int() with base 10: '3.5'",
+      "explication": "int() ne peut convertir une string que si elle represente un nombre ENTIER pur (sans point). Pour convertir \"3.5\", il faut d'abord passer par float(\"3.5\") puis int(...) si besoin."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Un utilisateur entre son age au clavier avec input() (ce qui renvoie toujours une string). Ecris le code qui recupere 'age' via input(), le convertit en int, puis affiche l'age dans 10 ans.",
+      "type": "code",
+      "reponse": "age = input(\"Quel est ton age ? \")\nage = int(age)\nprint(\"Dans 10 ans tu auras\", age + 10, \"ans\")",
+      "resultat_attendu": "Dans 10 ans tu auras (age+10) ans",
+      "explication": "input() renvoie TOUJOURS une string, meme si l'utilisateur tape des chiffres. Sans int(), age + 10 provoquerait une erreur (on ne peut pas additionner une string et un int)."
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction est_convertible_en_int(valeur) qui renvoie True ou False selon que la valeur (une string) peut etre convertie en int sans erreur, sans jamais faire planter le programme. Teste-la avec '42', '3.5', 'bonjour', '-7'.",
+      "type": "code",
+      "reponse": "def est_convertible_en_int(valeur):\n    try:\n        int(valeur)\n        return True\n    except ValueError:\n        return False\n\nprint(est_convertible_en_int(\"42\"))\nprint(est_convertible_en_int(\"3.5\"))\nprint(est_convertible_en_int(\"bonjour\"))\nprint(est_convertible_en_int(\"-7\"))",
+      "resultat_attendu": "True\nFalse\nFalse\nTrue",
+      "explication": "C'est le pattern EAFP (Easier to Ask Forgiveness than Permission) tres utilise en Python : on essaie l'operation directement dans un try, plutot que de la valider a l'avance."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Devine puis verifie : que renvoie str(3.0) exactement (avec ou sans le .0) ? Et str(int(3.0)) ?",
+      "type": "code",
+      "reponse": "print(str(3.0))\nprint(str(int(3.0)))",
+      "resultat_attendu": "3.0\n3",
+      "explication": "str(3.0) garde le format float donc affiche '3.0'. En passant d'abord par int(3.0) on perd le float et on obtient juste '3'."
+    }
+  ]
+}

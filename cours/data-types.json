@@ -1,0 +1,120 @@
+{
+  "id": "data-types",
+  "titre": "Python Data Types",
+  "description": "Les types de donnees integres en Python : comment les reconnaitre, les definir et les convertir.",
+  "cours": {
+    "introduction": "En programmation, le data type (type de donnee) est un concept important. Les variables peuvent stocker des donnees de differents types, et chaque type peut faire des choses differentes.",
+    "categories": [
+      { "categorie": "Text Type", "types": ["str"] },
+      { "categorie": "Numeric Types", "types": ["int", "float", "complex"] },
+      { "categorie": "Sequence Types", "types": ["list", "tuple", "range"] },
+      { "categorie": "Mapping Type", "types": ["dict"] },
+      { "categorie": "Set Types", "types": ["set", "frozenset"] },
+      { "categorie": "Boolean Type", "types": ["bool"] },
+      { "categorie": "Binary Types", "types": ["bytes", "bytearray", "memoryview"] },
+      { "categorie": "None Type", "types": ["NoneType"] }
+    ],
+    "sections": [
+      {
+        "titre": "Obtenir le type d'une donnee",
+        "explication": "La fonction type() renvoie le type de n'importe quel objet.",
+        "exemple": "x = 5\nprint(type(x))"
+      },
+      {
+        "titre": "Definir le type (implicitement)",
+        "explication": "En Python, le type est defini automatiquement selon la valeur assignee a la variable.",
+        "exemples": [
+          { "code": "x = \"Hello World\"", "type": "str" },
+          { "code": "x = 20", "type": "int" },
+          { "code": "x = 20.5", "type": "float" },
+          { "code": "x = 1j", "type": "complex" },
+          { "code": "x = [\"apple\", \"banana\", \"cherry\"]", "type": "list" },
+          { "code": "x = (\"apple\", \"banana\", \"cherry\")", "type": "tuple" },
+          { "code": "x = range(6)", "type": "range" },
+          { "code": "x = {\"name\": \"John\", \"age\": 36}", "type": "dict" },
+          { "code": "x = {\"apple\", \"banana\", \"cherry\"}", "type": "set" },
+          { "code": "x = frozenset({\"apple\", \"banana\", \"cherry\"})", "type": "frozenset" },
+          { "code": "x = True", "type": "bool" },
+          { "code": "x = b\"Hello\"", "type": "bytes" },
+          { "code": "x = bytearray(5)", "type": "bytearray" },
+          { "code": "x = memoryview(bytes(5))", "type": "memoryview" },
+          { "code": "x = None", "type": "NoneType" }
+        ]
+      },
+      {
+        "titre": "Definir un type precis (explicitement)",
+        "explication": "Pour forcer un type precis, on utilise les fonctions constructeur correspondantes.",
+        "exemples": [
+          { "code": "x = str(\"Hello World\")", "type": "str" },
+          { "code": "x = int(20)", "type": "int" },
+          { "code": "x = float(20.5)", "type": "float" },
+          { "code": "x = complex(1j)", "type": "complex" },
+          { "code": "x = list((\"apple\", \"banana\", \"cherry\"))", "type": "list" },
+          { "code": "x = tuple((\"apple\", \"banana\", \"cherry\"))", "type": "tuple" },
+          { "code": "x = range(6)", "type": "range" },
+          { "code": "x = dict(name=\"John\", age=36)", "type": "dict" },
+          { "code": "x = set((\"apple\", \"banana\", \"cherry\"))", "type": "set" },
+          { "code": "x = frozenset((\"apple\", \"banana\", \"cherry\"))", "type": "frozenset" },
+          { "code": "x = bool(5)", "type": "bool" },
+          { "code": "x = bytes(5)", "type": "bytes" },
+          { "code": "x = bytearray(5)", "type": "bytearray" },
+          { "code": "x = memoryview(bytes(5))", "type": "memoryview" }
+        ]
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": 1,
+      "niveau": "facile",
+      "question": "Si x = 5, quelle est la bonne syntaxe pour afficher le type de la variable x ?",
+      "type": "qcm",
+      "choix": ["print(dtype(x))", "print(type(x))", "print(x.dtype())"],
+      "reponse": "print(type(x))",
+      "explication": "'dtype' n'existe pas en Python standard, c'est un terme utilise par la librairie NumPy."
+    },
+    {
+      "id": 2,
+      "niveau": "facile",
+      "question": "Cree une variable y contenant le texte 'Python' et affiche son type.",
+      "type": "code",
+      "reponse": "y = \"Python\"\nprint(type(y))",
+      "resultat_attendu": "<class 'str'>"
+    },
+    {
+      "id": 3,
+      "niveau": "moyen",
+      "question": "Devine puis verifie : quel est le type de x = 5 / 2 (division normale) et de y = 5 // 2 (division entiere) ?",
+      "type": "code",
+      "reponse": "x = 5 / 2\ny = 5 // 2\nprint(type(x))\nprint(type(y))",
+      "resultat_attendu": "<class 'float'>\n<class 'int'>",
+      "explication": "La division '/' renvoie toujours un float en Python, meme si le resultat est un nombre rond. La division entiere '//' renvoie un int."
+    },
+    {
+      "id": 4,
+      "niveau": "moyen",
+      "question": "Cree un dictionnaire representant une personne avec les cles 'nom', 'age' et 'ville'. Affiche son type puis le type de dictionnaire['age'].",
+      "type": "code",
+      "reponse": "personne = {\"nom\": \"Malo\", \"age\": 25, \"ville\": \"Bruxelles\"}\nprint(type(personne))\nprint(type(personne[\"age\"]))",
+      "resultat_attendu": "<class 'dict'>\n<class 'int'>"
+    },
+    {
+      "id": 5,
+      "niveau": "difficile",
+      "question": "Sans executer de code, essaie de deviner le type de chacune de ces expressions, puis verifie avec type() : (1) True + True   (2) 'a' * 3   (3) [1, 2] + [3, 4]   (4) (1,) (attention a la virgule !)",
+      "type": "code",
+      "reponse": "print(type(True + True))   # int (les booleens sont des sous-types de int)\nprint(type('a' * 3))       # str\nprint(type([1, 2] + [3, 4]))  # list\nprint(type((1,)))          # tuple",
+      "resultat_attendu": "<class 'int'>\n<class 'str'>\n<class 'list'>\n<class 'tuple'>",
+      "explication": "True + True donne 2 car bool est un sous-type de int (True=1, False=0). (1) sans virgule serait juste un int entre parentheses, pas un tuple : il faut (1,)."
+    },
+    {
+      "id": 6,
+      "niveau": "difficile",
+      "question": "Challenge : ecris une fonction type_ou_none(valeur) qui renvoie le nom du type sous forme de texte (ex: 'int', 'str'), ou 'vide' si la valeur est None. Teste-la avec 42, 'salut', None et [1,2,3].",
+      "type": "code",
+      "reponse": "def type_ou_none(valeur):\n    if valeur is None:\n        return \"vide\"\n    return type(valeur).__name__\n\nprint(type_ou_none(42))\nprint(type_ou_none(\"salut\"))\nprint(type_ou_none(None))\nprint(type_ou_none([1, 2, 3]))",
+      "resultat_attendu": "int\nstr\nvide\nlist",
+      "explication": "type(valeur).__name__ donne le nom du type sous forme de chaine de caracteres, plus pratique a afficher que <class 'int'>."
+    }
+  ]
+}
